@@ -2,7 +2,7 @@
 * Local Server written in Python to play a custom Battle scene to play animations.  
 * Tested on [Python 3.11](https://www.python.org/downloads/) or higher.  
   
-![Preview](https://raw.githubusercontent.com/MizaGBF/GBFBP/main/assets/preview.png)  
+![Preview](https://raw.githubusercontent.com/MizaGBF/GBFBP/main/data/preview.png)  
   
 ### Installation  
 1. Download this repository and unzip (if needed) to a directory of your choice.  
