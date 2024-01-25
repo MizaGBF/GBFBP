@@ -1,5 +1,5 @@
 # Granblue Fantasy Battle Player  
-* Local Server written in Python to play a custom Battle scene to play animations.  
+* Local Server written in Python to load a custom Battle scene to play animations.  
 * Tested on [Python 3.11](https://www.python.org/downloads/) or higher.  
   
 ![Preview](https://raw.githubusercontent.com/MizaGBF/GBFBP/main/data/readme_preview.png)  
