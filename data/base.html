@@ -1,0 +1,1997 @@
+<div id="asset-css" data-css="/raid/index.css"></div>
+<input type="hidden" id="is-advanced" value="0">
+<div class="cnt-raid">
+  <div class="cnt-raid-stage" data-has-revenge-bonus="0">
+    <script type="text/template" id="tpl-prt-num-info"><% _.each(numArray, function(num){ %>
+				<div class="num-info<%= num %>">
+				</div><% }); %>
+			</script>
+    <script type="text/template" id="tpl-prt-red-frame"> <div class="prt-red-frame"></div>
+				<div class="prt-red-frame-anim"></div>
+			</script>
+    <div class="prt-slide-mask"></div>
+    <div class="prt-targeting-area main-tap-area" type="">
+      <div class="prt-gauge-area">
+        <div class="btn-enemy-gauge" target="1"></div>
+        <div class="btn-enemy-gauge prt-enemy-percent" target="1">
+          <span class="txt-gauge-value" id="enemy-hp0">0</span>
+          <div>%</div>
+        </div>
+        <div class="btn-enemy-gauge" target="2"></div>
+        <div class="btn-enemy-gauge prt-enemy-percent" target="2">
+          <span class="txt-gauge-value" id="enemy-hp1">0</span>
+          <div>%</div>
+        </div>
+        <div class="btn-enemy-gauge" target="3"></div>
+        <div class="btn-enemy-gauge prt-enemy-percent" target="3">
+          <span class="txt-gauge-value" id="enemy-hp2">0</span>
+          <div>%</div>
+        </div>
+      </div>
+      <div class="prt-stage-area">
+        <a href="javascript:void(0);" class="btn-targeting enemy-1" data-target="1">
+          <div class="targeting"></div>
+          <div class="enemy-info">
+            <div class="attribute"></div>
+            <div class="ico-rm"></div>
+            <div class="name"></div>
+          </div>
+        </a>
+        <div class="btn-next-super pos1" target="1"></div>
+        <a href="javascript:void(0);" class="btn-targeting enemy-2" data-target="2">
+          <div class="targeting"></div>
+          <div class="enemy-info">
+            <div class="attribute"></div>
+            <div class="ico-rm"></div>
+            <div class="name"></div>
+          </div>
+        </a>
+        <div class="btn-next-super pos2" target="2"></div>
+        <a href="javascript:void(0);" class="btn-targeting enemy-3" data-target="3">
+          <div class="targeting"></div>
+          <div class="enemy-info">
+            <div class="attribute"></div>
+            <div class="ico-rm"></div>
+            <div class="name"></div>
+          </div>
+        </a>
+        <div class="btn-next-super pos3" target="3"></div>
+      </div>
+      <div class="prt-info-mask-targeting"></div>
+    </div>
+    <div id="prt-field-conditions" class="btn-field-conditions main-tap-area"></div>
+    <div id="prt-set-special-skip" class="prt-set-special-skip main-tap-area">
+      <div class="prt-skip-special-stage chara1 pos1"></div>
+      <div class="prt-skip-special-stage chara2 pos2"></div>
+      <div class="prt-skip-special-stage chara3 pos3"></div>
+      <div class="prt-skip-special-stage chara4 pos4"></div>
+    </div>
+    <canvas id="canv-force-attack"></canvas>
+    <div class="prt-stage-wrapper">
+      <div class="prt-bg-stage-distant"></div>
+      <div class="prt-bg-effect-brightness"></div>
+      <div class="prt-bg-effect-color"></div>
+      <canvas id="canvas" width="640" height="654"></canvas>
+      <div class="prt-canvas-mask main-tap-area"></div>
+      <div class="prt-enemy-stage encount-one">
+        <div class="prt-boss-area">
+          <div class="prt-comment pos-wait">
+            <div class="txt-comment"></div>
+          </div>
+        </div>
+        <div class="prt-enemy-area enemy-1">
+          <div class="prt-comment pos-wait">
+            <div class="txt-comment"></div>
+          </div>
+        </div>
+        <div class="prt-enemy-area enemy-2">
+          <div class="prt-comment pos-wait">
+            <div class="txt-comment"></div>
+          </div>
+        </div>
+        <div class="prt-enemy-area enemy-3">
+          <div class="prt-comment pos-wait">
+            <div class="txt-comment"></div>
+          </div>
+        </div>
+        <div class="prt-info-mask main-tap-area"></div>
+      </div>
+      <div class="prt-cutin">
+        <div class="txt-cutin-summon"></div>
+        <div class="txt-cutin-party"></div>
+        <div class="txt-cutin-enemy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="prt-tips">
+    <div class="prt-tips-box">
+      <div class="txt-title"></div>
+      <div class="prt-line"></div>
+      <div class="txt-body"></div>
+      <div class="ico-cursor-explain"></div>
+    </div>
+  </div>
+  <div class="prt-history"></div>
+  <div class="prt-special-chain">
+    <div class="prt-effect"></div>
+    <div class="prt-chain">
+      <div class=""></div>
+    </div>
+    <div class="prt-over-chain"></div>
+  </div>
+  <div class="prt-turn-info">
+    <div class="prt-turn"></div>
+    <div class="prt-number">
+      <div style="display:none;"></div>
+      <div style="display:none;"></div>
+      <div style="display:none;"></div>
+    </div>
+  </div>
+  <div class="cnt-raid-chat">
+    <div class="btn-chat" category="9999">
+      <div class="ico-attention"></div>
+    </div>
+    <div class="btn-chat comment" category="-1">
+      <div class="ico-attention"></div>
+    </div>
+  </div>
+  <div id="cnt-raid-information" class="cnt-raid-information">
+    <div class="btn-command-back"></div>
+    <div class="img-diagram"></div>
+    <div class="img-score"></div>
+    <div class="btn-attack-start"></div>
+    <div class="prt-attack-start-dummy display-off"></div>
+    <div class="btn-attack-cancel btn-cancel display-off"></div>
+    <div class="btn-revival"></div>
+    <div class="prt-ability-rail-overlayer hide">
+      <div class="rail-icon-over" index="0"></div>
+      <div class="rail-icon-over" index="1"></div>
+      <div class="rail-icon-over" index="2"></div>
+      <div class="rail-icon-over" index="3"></div>
+      <div class="rail-icon-over" index="4"></div>
+    </div>
+  </div>
+  <div class="prt-navi btn-scene-next">
+    <div class="prt-chara">
+      <img class="img-chara" src="">
+    </div>
+    <div class="prt-advice"></div>
+    <div class="ico-cursor-talk"></div>
+  </div>
+  <div class="prt-command">
+    <div id="prt-command-top" class="prt-command-top">
+      <div class="prt-party">
+        <div class="prt-member">
+          <div class="lis-character0 btn-command-character" pos="0">
+            <img class="img-chara-command" src="">
+            <div class="prt-status"></div>
+            <div class="prt-hp-info">
+              <div class="img-text-hp"></div>
+              <div class="txt-hp-value"></div>
+              <div class="txt-coating-value"></div>
+              <div class="prt-gauge-hp">
+                <div class="prt-gauge-hp-inner"></div>
+              </div>
+            </div>
+            <div class="prt-special-info">
+              <div class="img-text-special"></div>
+              <div class="prt-gauge-special character0">
+                <div class="prt-shine-under100-bg"></div>
+                <div class="prt-gauge-special-inner"></div>
+                <div class="prt-shine"></div>
+                <div class="prt-gauge-special2-inner"></div>
+                <div class="prt-shine2"></div>
+                <div class="prt-black-mask"></div>
+              </div>
+              <div class="prt-percent">
+                <span class="txt-gauge-value">0</span>
+                <div>%</div>
+              </div>
+            </div>
+            <div class="img-text-ability"></div>
+            <div class="prt-ability-state">
+              <div class="lis-ability-state ability1"></div>
+              <div class="lis-ability-state ability2"></div>
+              <div class="lis-ability-state ability3"></div>
+              <div class="lis-ability-state ability4"></div>
+            </div>
+            <div class="prt-mask"></div>
+          </div>
+          <div class="lis-character1 btn-command-character" pos="1">
+            <img class="img-chara-command" src="">
+            <div class="prt-status"></div>
+            <div class="prt-hp-info">
+              <div class="img-text-hp"></div>
+              <div class="txt-hp-value"></div>
+              <div class="txt-coating-value"></div>
+              <div class="prt-gauge-hp">
+                <div class="prt-gauge-hp-inner"></div>
+              </div>
+            </div>
+            <div class="prt-special-info">
+              <div class="img-text-special"></div>
+              <div class="prt-gauge-special character1">
+                <div class="prt-shine-under100-bg"></div>
+                <div class="prt-gauge-special-inner"></div>
+                <div class="prt-shine"></div>
+                <div class="prt-gauge-special2-inner"></div>
+                <div class="prt-shine2"></div>
+                <div class="prt-black-mask"></div>
+              </div>
+              <div class="prt-percent">
+                <span class="txt-gauge-value">0</span>
+                <div>%</div>
+              </div>
+            </div>
+            <div class="img-text-ability"></div>
+            <div class="prt-ability-state">
+              <div class="lis-ability-state ability1"></div>
+              <div class="lis-ability-state ability2"></div>
+              <div class="lis-ability-state ability3"></div>
+              <div class="lis-ability-state ability4"></div>
+            </div>
+            <div class="prt-mask"></div>
+          </div>
+          <div class="lis-character2 btn-command-character" pos="2">
+            <img class="img-chara-command" src="">
+            <div class="prt-status"></div>
+            <div class="prt-hp-info">
+              <div class="img-text-hp"></div>
+              <div class="txt-hp-value"></div>
+              <div class="txt-coating-value"></div>
+              <div class="prt-gauge-hp">
+                <div class="prt-gauge-hp-inner"></div>
+              </div>
+            </div>
+            <div class="prt-special-info">
+              <div class="img-text-special"></div>
+              <div class="prt-gauge-special character2">
+                <div class="prt-shine-under100-bg"></div>
+                <div class="prt-gauge-special-inner"></div>
+                <div class="prt-shine"></div>
+                <div class="prt-gauge-special2-inner"></div>
+                <div class="prt-shine2"></div>
+                <div class="prt-black-mask"></div>
+              </div>
+              <div class="prt-percent">
+                <span class="txt-gauge-value">0</span>
+                <div>%</div>
+              </div>
+            </div>
+            <div class="img-text-ability"></div>
+            <div class="prt-ability-state">
+              <div class="lis-ability-state ability1"></div>
+              <div class="lis-ability-state ability2"></div>
+              <div class="lis-ability-state ability3"></div>
+              <div class="lis-ability-state ability4"></div>
+            </div>
+            <div class="prt-mask"></div>
+          </div>
+          <div class="lis-character3 btn-command-character" pos="3">
+            <img class="img-chara-command" src="">
+            <div class="prt-status"></div>
+            <div class="prt-hp-info">
+              <div class="img-text-hp"></div>
+              <div class="txt-hp-value"></div>
+              <div class="txt-coating-value"></div>
+              <div class="prt-gauge-hp">
+                <div class="prt-gauge-hp-inner"></div>
+              </div>
+            </div>
+            <div class="prt-special-info">
+              <div class="img-text-special"></div>
+              <div class="prt-gauge-special character3">
+                <div class="prt-shine-under100-bg"></div>
+                <div class="prt-gauge-special-inner"></div>
+                <div class="prt-shine"></div>
+                <div class="prt-gauge-special2-inner"></div>
+                <div class="prt-shine2"></div>
+                <div class="prt-black-mask"></div>
+              </div>
+              <div class="prt-percent">
+                <span class="txt-gauge-value">0</span>
+                <div>%</div>
+              </div>
+            </div>
+            <div class="img-text-ability"></div>
+            <div class="prt-ability-state">
+              <div class="lis-ability-state ability1"></div>
+              <div class="lis-ability-state ability2"></div>
+              <div class="lis-ability-state ability3"></div>
+              <div class="lis-ability-state ability4"></div>
+            </div>
+            <div class="prt-mask"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="prt-command-summon">
+      <div class="prt-summon-list">
+        <div class="prt-list-top btn-command-summon">
+          <div class="prt-mask"></div>
+          <div class="prt-fusion">
+            <img class="img-summon" src="" style="display:none;">
+            <div class="prt-chance"></div>
+          </div>
+        </div>
+        <div class="lis-summon" pos='1'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-1"></canvas>
+          <div class="prt-summon-skin">
+            <img class="img-summon-skin">
+            <div class="prt-summon-attribute"></div>
+          </div>
+        </div>
+        <div class="lis-summon" pos='2'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-2"></canvas>
+          <div class="prt-summon-skin">
+            <img class="img-summon-skin">
+            <div class="prt-summon-attribute"></div>
+          </div>
+        </div>
+        <div class="lis-summon" pos='3'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-3"></canvas>
+          <div class="prt-summon-skin">
+            <img class="img-summon-skin">
+            <div class="prt-summon-attribute"></div>
+          </div>
+        </div>
+        <div class="lis-summon" pos='4'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-4"></canvas>
+          <div class="prt-summon-skin">
+            <img class="img-summon-skin">
+            <div class="prt-summon-attribute"></div>
+          </div>
+        </div>
+        <div class="lis-summon" pos='5'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-5"></canvas>
+          <div class="prt-summon-skin">
+            <img class="img-summon-skin">
+            <div class="prt-summon-attribute"></div>
+          </div>
+        </div>
+        <div class="lis-summon supporter" pos='6'>
+          <img src="">
+          <div class="txt-summon"></div>
+          <div class="prt-mask"></div>
+          <canvas class="canv-list-summon-effect" id="canv-summon-pos-supporter"></canvas>
+        </div>
+      </div>
+    </div>
+    <script type="text/template" id="ability-list"> <div class="lis-ability" data-ability-index="1">
+																						<div class="ico-ability ability-character-num-<%= num %>-1">
+																						</div>
+																						<div class="ico-ability-recast txt-recast">
+																							<span class="ability-icon-num-<%= num %>-1">
+																							</span>
+																							<div class="lis-ability-state state1"></div>
+																						</div>
+																						<div class="prt-start-recast"></div>
+																						<div class="ico-ability-shine"></div>
+																					</div>
+																					<div class="lis-ability" data-ability-index="2">
+																						<div class="ico-ability ability-character-num-<%= num %>-2">
+																						</div>
+																						<div class="ico-ability-recast txt-recast">
+																							<span class="ability-icon-num-<%= num %>-2">
+																							</span>
+																							<div class="lis-ability-state state1"></div>
+																						</div>
+																						<div class="prt-start-recast"></div>
+																						<div class="ico-ability-shine"></div>
+																					</div>
+																					<div class="lis-ability" data-ability-index="3">
+																						<div class="ico-ability ability-character-num-<%= num %>-3">
+																						</div>
+																						<div class="ico-ability-recast txt-recast">
+																							<span class="ability-icon-num-<%= num %>-3">
+																							</span>
+																							<div class="lis-ability-state state1"></div>
+																						</div>
+																						<div class="prt-start-recast"></div>
+																						<div class="ico-ability-shine"></div>
+																					</div>
+																					<div class="lis-ability" data-ability-index="4">
+																						<div class="ico-ability ability-character-num-<%= num %>-4">
+																						</div>
+																						<div class="ico-ability-recast txt-recast">
+																							<span class="ability-icon-num-<%= num %>-4">
+																							</span>
+																							<div class="lis-ability-state state1"></div>
+																						</div>
+																						<div class="prt-start-recast"></div>
+																						<div class="ico-ability-shine"></div>
+																					</div>
+																				</script>
+    <div class="prt-command-chara chara1" pos="1">
+      <div class="lis-character0">
+        <img class="img-chara-command" src="">
+        <div class="prt-status"></div>
+        <div class="prt-hp-info">
+          <div class="img-text-hp"></div>
+          <div class="txt-hp-value"></div>
+          <div class="txt-coating-value"></div>
+          <div class="prt-gauge-hp">
+            <div class="prt-gauge-hp-inner"></div>
+          </div>
+        </div>
+        <div class="prt-special-info">
+          <div class="img-text-special"></div>
+          <div class="prt-gauge-special character0">
+            <div class="prt-gauge-special-inner"></div>
+            <div class="prt-shine-under100-bg"></div>
+            <div class="prt-shine"></div>
+            <div class="prt-gauge-special2-inner"></div>
+            <div class="prt-shine2"></div>
+            <div class="prt-black-mask"></div>
+          </div>
+          <div class="prt-percent">
+            <span class="txt-gauge-value">0</span>
+            <div>%</div>
+          </div>
+        </div>
+        <div class="img-text-ability"></div>
+        <div class="prt-ability-state">
+          <div class="lis-ability-state ability1"></div>
+          <div class="lis-ability-state ability2"></div>
+          <div class="lis-ability-state ability3"></div>
+          <div class="lis-ability-state ability4"></div>
+        </div>
+        <div class="prt-mask"></div>
+      </div>
+      <div class="prt-special">
+        <div class="txt-name"></div>
+        <div class="txt-comment"></div>
+      </div>
+      <div class="prt-ability-list"></div>
+      <div class="prt-status prt-condition" target="0" pos="0"></div>
+      <div class="prt-ability-skip" set="ability_popup" active="" targets=".prt-ability-skip">
+        <div class="txt-ability-skip"></div>
+        <div class="btn-ability-skip"></div>
+      </div>
+    </div>
+    <div class="prt-command-chara chara2" pos="2">
+      <div class="lis-character1">
+        <img class="img-chara-command" src="">
+        <div class="prt-status"></div>
+        <div class="prt-hp-info">
+          <div class="img-text-hp"></div>
+          <div class="txt-hp-value"></div>
+          <div class="txt-coating-value"></div>
+          <div class="prt-gauge-hp">
+            <div class="prt-gauge-hp-inner"></div>
+          </div>
+        </div>
+        <div class="prt-special-info">
+          <div class="img-text-special"></div>
+          <div class="prt-gauge-special character1">
+            <div class="prt-gauge-special-inner"></div>
+            <div class="prt-shine-under100-bg"></div>
+            <div class="prt-shine"></div>
+            <div class="prt-gauge-special2-inner"></div>
+            <div class="prt-shine2"></div>
+            <div class="prt-black-mask"></div>
+          </div>
+          <div class="prt-percent">
+            <span class="txt-gauge-value">0</span>
+            <div>%</div>
+          </div>
+        </div>
+        <div class="img-text-ability"></div>
+        <div class="prt-ability-state">
+          <div class="lis-ability-state ability1"></div>
+          <div class="lis-ability-state ability2"></div>
+          <div class="lis-ability-state ability3"></div>
+          <div class="lis-ability-state ability4"></div>
+        </div>
+        <div class="prt-mask"></div>
+      </div>
+      <div class="prt-special">
+        <div class="txt-name"></div>
+        <div class="txt-comment"></div>
+      </div>
+      <div class="prt-ability-list"></div>
+      <div class="prt-status prt-condition" target="0" pos="1"></div>
+      <div class="prt-ability-skip" set="ability_popup" active="" targets=".prt-ability-skip">
+        <div class="txt-ability-skip"></div>
+        <div class="btn-ability-skip"></div>
+      </div>
+    </div>
+    <div class="prt-command-chara chara3" pos="3">
+      <div class="lis-character2">
+        <img class="img-chara-command" src="">
+        <div class="prt-status"></div>
+        <div class="prt-hp-info">
+          <div class="img-text-hp"></div>
+          <div class="txt-hp-value"></div>
+          <div class="txt-coating-value"></div>
+          <div class="prt-gauge-hp">
+            <div class="prt-gauge-hp-inner"></div>
+          </div>
+        </div>
+        <div class="prt-special-info">
+          <div class="img-text-special"></div>
+          <div class="prt-gauge-special character2">
+            <div class="prt-gauge-special-inner"></div>
+            <div class="prt-shine-under100-bg"></div>
+            <div class="prt-shine"></div>
+            <div class="prt-gauge-special2-inner"></div>
+            <div class="prt-shine2"></div>
+            <div class="prt-black-mask"></div>
+          </div>
+          <div class="prt-percent">
+            <span class="txt-gauge-value">0</span>
+            <div>%</div>
+          </div>
+        </div>
+        <div class="img-text-ability"></div>
+        <div class="prt-ability-state">
+          <div class="lis-ability-state ability1"></div>
+          <div class="lis-ability-state ability2"></div>
+          <div class="lis-ability-state ability3"></div>
+          <div class="lis-ability-state ability4"></div>
+        </div>
+        <div class="prt-mask"></div>
+      </div>
+      <div class="prt-special">
+        <div class="txt-name"></div>
+        <div class="txt-comment"></div>
+      </div>
+      <div class="prt-ability-list"></div>
+      <div class="prt-status prt-condition" target="0" pos="2"></div>
+      <div class="prt-ability-skip" set="ability_popup" active="" targets=".prt-ability-skip">
+        <div class="txt-ability-skip"></div>
+        <div class="btn-ability-skip"></div>
+      </div>
+    </div>
+    <div class="prt-command-chara chara4" pos="4">
+      <div class="lis-character3">
+        <img class="img-chara-command" src="">
+        <div class="prt-status"></div>
+        <div class="prt-hp-info">
+          <div class="img-text-hp"></div>
+          <div class="txt-hp-value"></div>
+          <div class="txt-coating-value"></div>
+          <div class="prt-gauge-hp">
+            <div class="prt-gauge-hp-inner"></div>
+          </div>
+        </div>
+        <div class="prt-special-info">
+          <div class="img-text-special"></div>
+          <div class="prt-gauge-special character3">
+            <div class="prt-gauge-special-inner"></div>
+            <div class="prt-shine-under100-bg"></div>
+            <div class="prt-shine"></div>
+            <div class="prt-gauge-special2-inner"></div>
+            <div class="prt-shine2"></div>
+            <div class="prt-black-mask"></div>
+          </div>
+          <div class="prt-percent">
+            <span class="txt-gauge-value">0</span>
+            <div>%</div>
+          </div>
+        </div>
+        <div class="img-text-ability"></div>
+        <div class="prt-ability-state">
+          <div class="lis-ability-state ability1"></div>
+          <div class="lis-ability-state ability2"></div>
+          <div class="lis-ability-state ability3"></div>
+          <div class="lis-ability-state ability4"></div>
+        </div>
+        <div class="prt-mask"></div>
+      </div>
+      <div class="prt-special">
+        <div class="txt-name"></div>
+        <div class="txt-comment"></div>
+      </div>
+      <div class="prt-ability-list"></div>
+      <div class="prt-status prt-condition" target="0" pos="3"></div>
+      <div class="prt-ability-skip" set="ability_popup" active="" targets=".prt-ability-skip">
+        <div class="txt-ability-skip"></div>
+        <div class="btn-ability-skip"></div>
+      </div>
+    </div>
+    <div class="prt-slide-icon">
+      <div class="ico-pre"></div>
+      <div class="ico-next"></div>
+    </div>
+    <div class="prt-command-mask"></div>
+    <div id="prt-force-attack-mask"></div>
+  </div>
+  <div id="prt-special-condition" class="prt-show-condition" style="background: url('assets/img_low/sp/event/treasureraid082/assets/training/raid/bg_special_condition.png') no-repeat; -webkit-background-size: 320px 60px; background-size: 320px 60px; width: 320px; height: 60px; margin-top: 455px; position: relative; z-index: 20; font-size: 10px;">
+    <div class="prt-special-condition-title">GBFBPVER</div>
+    <div class="prt-special-condition-body">
+      <div class="txt-special-condition">SP1</div>
+      <div id="prt-special-condition-turn" class="txt-special-condition-turn">
+        <span>SP2</span>
+      </div>
+    </div>
+  </div>
+  <div class="prt-command-end">
+    <div class="btn-result"></div>
+  </div>
+  <div class="prt-raid-log">
+    <div class="txt-title"></div>
+    <div class="prt-line"></div>
+    <div class="txt-body"></div>
+  </div>
+  <div class="prt-start-direction disable-ready-auto-setting">
+    <div class="prt-black-bg"></div>
+    <div class="prt-progress">
+      <div class="prt-progress-bg">
+        <img class="img-progress-bg" src="assets/img_low/sp/raid/bg_progress/01qc.png">
+      </div>
+      <div class="prt-wave-num">
+        <div class="txt-wave-num">
+          <span class="txt-wave"></span>
+          <span class="now"></span>
+          <span class="num-wave-slash"></span>
+          <span class="all"></span>
+        </div>
+      </div>
+      <div class="prt-position">
+        <div class="prt-line"></div>
+      </div>
+      <div class="prt-move-be">
+        <img id="img-start-be" class="prt-be" style="width:38px;" src="">
+      </div>
+    </div>
+    <div class="prt-auto-setting"></div>
+  </div>
+  <div class="prt-rare-direction">
+    <div class="prt-background">
+      <div class="img-rare-title"></div>
+    </div>
+  </div>
+</div>
+<div class="prt-battle-condition">
+  <div class="prt-condition-info">
+    <div class="txt-title"></div>
+    <div class="txt-body"></div>
+  </div>
+</div>
+<div id="prt-image-over-stage"></div>
+<div id="pop-help"></div>
+<div id="pop"></div>
+<script type="text/template" id="popup"> <div class="pop-usual <%= className %>" data-token="">
+																										<div class="prt-popup-header<% if(typeof maskSubMenu !== 'undefined' && maskSubMenu){ %>-sm<% } %><% if(Game.lang === 'ja' && typeof title !== 'undefined' && title && title.length > 22) { %> txt-small<% } %>"><%= title %>
+																										</div>
+																										<div class="prt-popup-body<% if(typeof maskSubMenu !== 'undefined' && maskSubMenu){ %>-sm<% } %>">
+																											<div class="txt-popup-body<% if(typeof maskSubMenu !== 'undefined' && maskSubMenu){ %>-sm<% } %>"><%= body %>
+																											</div><% if (btnTreasure === 1) { %>
+																											<div class="prt-treasure-registration">
+																												<div class="txt-treasure-registration">You can't add any more treasures.</div>
+																												<div class="btn-treasure-registration"></div>
+																											</div><% } %>
+																										</div>
+																										<div class="prt-popup-footer<% if(typeof maskSubMenu !== 'undefined' && maskSubMenu){ %>-sm<% } %>"><% if(flagBtnCancel==1){ print("
+																											<div class='btn-usual-cancel" + (btnCancelClassName ? " "+btnCancelClassName : "") + (arguments[0].btnCancelText ? " hide-common-text" : "") + "'>" + (arguments[0].btnCancelText || '') + "</div>") } %><% if(flagBtnClose==1){ print("
+																											<div class='btn-usual-close" + (btnCloseClassName ? " "+btnCloseClassName : "") + (arguments[0].btnCloseText ? " hide-common-text" : "") + "'>" + (arguments[0].btnCloseText || '') + "</div>") } %><% if(flagBtnOk==1){ print("
+																											<div class='btn-usual-ok" + (btnOkClassName ? " "+btnOkClassName : "") + (arguments[0].btnOkText ? " hide-common-text" : "")  + "'>" + (arguments[0].btnOkText || '') + "</div>") } %>
+																										</div>
+																									</div>
+																								</script>
+<div id="pop-scroll" class="btn-scroll"></div>
+<script type="text/template" id="tpl-pop-menu"> <div class="prt-menu">
+																										<div class="prt-title">
+																											<div class="ico-rhombus"></div>
+																											<div class="txt-item">Party</div>
+																										</div>
+																										<div class="prt-menu-list">
+																											<div class="prt-party-member">
+																												<div class="lis-party-member <% if(member[0].alive=='dead'){ %>black<% } %>" pos="0">
+																													<img class="img-party-member" src="<%= member[0].image %>"><% if(member[0].canNotRevive){ %>
+																														<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																													</div>
+																													<div class="lis-party-member <% if(member[1].alive=='dead'){ %>black<% } %>" pos="1">
+																														<img class="img-party-member" src="<%= member[1].image %>"><% if(member[1].canNotRevive){ %>
+																															<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																														</div>
+																														<div class="lis-party-member <% if(member[2].alive=='dead'){ %>black<% } %>" pos="2">
+																															<img class="img-party-member" src="<%= member[2].image %>"><% if(member[2].canNotRevive){ %>
+																																<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																															</div>
+																															<div class="lis-party-member <% if(member[3].alive=='dead'){ %>black<% } %>" pos="3">
+																																<img class="img-party-member" src="<%= member[3].image %>"><% if(member[3].canNotRevive){ %>
+																																	<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																																</div>
+																																<div class="lis-party-member <% if(member[4].alive=='dead'){ %>black<% } %>" pos="4">
+																																	<img class="img-party-member" src="<%= member[4].image %>"><% if(member[4].canNotRevive){ %>
+																																		<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																																	</div>
+																																	<div class="lis-party-member <% if(member[5].alive=='dead'){ %>black<% } %>" pos="5">
+																																		<img class="img-party-member" src="<%= member[5].image %>"><% if(member[5].canNotRevive){ %>
+																																			<img class="img-can-not-revive" src="assets/img_low/sp/raid/parts/mask_can_not_revive.png" alt="mask_can_not_revive" /><% } %>
+																																		</div>
+																																	</div>
+																																</div>
+																																<div class="prt-title">
+																																	<div class="ico-rhombus"></div>
+																																	<div class="txt-item">Settings</div>
+																																</div>
+																																<div class="prt-menu-list prt-setting">
+																																	<div class="prt-button set-battle-options button<%= battleOptionsButtonCount %>"><% if(battleOptionsDisplayFlag){ %>
+																																		<div class="btn-setting-battle-options display"></div><% } %><% if(battleOptionsAssistFlag){ %>
+																																		<div class="btn-setting-battle-options assist"></div><% } %><% if(battleOptionsChatFlag){ %>
+																																		<div class="btn-setting-battle-options chat"></div><% } %>
+																																	</div>
+																																</div><% if(showAutoSetting) { %>
+																																<div class="prt-title">
+																																	<div class="ico-rhombus"></div>
+																																	<div class="txt-item">Auto Settings</div>
+																																</div>
+																																<form id="frm-auto-type" class="set-auto-type">
+																																	<div class="prt-set-radio">
+																																		<input id="battle-auto-normal" name="battle_auto_type" type="radio" value="1"<% if(+autoType === 1){ %> checked<% } %>>
+																																			<label for="battle-auto-normal" class="btn-usual-setting">Semi</label>
+																																		</div>
+																																		<div class="prt-set-radio">
+																																			<input id="battle-auto-full" name="battle_auto_type" type="radio" value="2"<% if(+autoType === 2){ %> checked<% } else if(isFullAutoBanned){ %> disabled<% } %>>
+																																				<label for="battle-auto-full" class="btn-usual-setting">Full</label>
+																																			</div>
+																																		</form>
+																																		<div class="prt-title">
+																																			<div class="ico-rhombus"></div>
+																																			<div class="txt-item">Full Auto Quick Summon</div>
+																																		</div>
+																																		<form id="frm-auto-quick-summon" class="set-auto-quick-summon">
+																																			<div class="prt-set-radio">
+																																				<input id="auto-quick-summon-off" name="auto_quick_summon" type="radio" value="0"<%= isFullAutoQuickSummon ? '' : ' checked' %>>
+																																					<label for="auto-quick-summon-off" class="btn-usual-setting">Off</label>
+																																				</div>
+																																				<div class="prt-set-radio">
+																																					<input id="auto-quick-summon-on" name="auto_quick_summon" type="radio" value="1"<%= isFullAutoQuickSummon ? ' checked' : '' %>>
+																																						<label for="auto-quick-summon-on" class="btn-usual-setting">On</label>
+																																					</div>
+																																				</form><% } %><% if (showAutoSetting || 0) { %>
+																																				<div class="txt-auto-explanation">
+				Changes to auto settings apply to this quest only.
+			</div><% } %><% if(isSingleTrial){ %>
+																																				<div class="btn-restart-trial btn-red-m">Restart</div><% } %>
+																																				<div class="prt-menu-list menu-command-area">
+																																					<div class="btn-mypage btn-blue-m"></div>
+																																					<div class="btn-withdrow btn-red-m"></div>
+																																				</div>
+																																			</div>
+																																		</script>
+<script type="text/template" id="tpl-pop-setting-display"> <div class="prt-menu">
+																																				<div class="prt-title">
+																																					<div class="ico-rhombus"></div>
+																																					<div class="txt-item">Display Settings</div>
+																																				</div>
+																																				<div class="prt-menu-list prt-setting">
+																																					<div class="prt-button set-diagram display-option"><% if(!stage.pJsnData.is_hidden_hp_and_specialgauge){ %>
+																																						<div class="btn-check diagram" set="diagram" active="<% if(diagram){ print('1') } else { print('0') }; %>" change_class=".img-diagram">
+																																						</div><% } %>
+																																						<div class="btn-check serif" set="serif" active="<% if(serif){ print('1') } else { print('0') }; %>" change_class=".prt-navi" display_type="1">
+																																						</div>
+																																						<div class="btn-check effect" set="others_effect_display_flag" active="<% if(effect){ print('1') } else { print('0') }; %>" change_class=".prt-navi" display_type="1">
+																																						</div>
+																																						<div class="btn-check auto" set="auto_attack_display_flag" active="<% if(auto){ print('1') } else { print('0') }; %>" change_class=".prt-navi" display_type="1">
+																																						</div>
+																																						<div class="btn-check coating" set="is_show_coating_value" active="<%= coating %>" change_class="" display_type="">
+																																						</div>
+																																						<div class="btn-check quick-summon" set="is_show_quick_summon" active="<%= quickSummon %>" change_class="" display_type="">
+																																						</div>
+																																						<div class="btn-check battle-navi" set="is_show_battle_navi" active="<%= +isShowBattleNavi %>" change_class="" display_type="">
+																																						</div>
+																																					</div>
+																																				</div>
+																																				<div class="prt-title">
+																																					<div class="ico-rhombus"></div>
+																																					<div class="txt-item">Battle Speed</div>
+																																				</div>
+																																				<div class="prt-radio-box set-battle-speed">
+																																					<div class="prt-set-radio">
+																																						<input id="battle_speed_mid" name="battle-speed" type="radio" value="2"<% if(currentFps == 18){ %> checked<% } %>>
+																																							<label for="battle_speed_mid" class="btn-usual-setting">Standard</label>
+																																						</div>
+																																						<div class="prt-set-radio">
+																																							<input id="battle_speed_high" name="battle-speed" type="radio" value="3"<% if(currentFps == 24){ %> checked<% } %>>
+																																								<label for="battle_speed_high" class="btn-usual-setting">Fast</label>
+																																							</div>
+																																						</div>
+																																						<div class="prt-title">
+																																							<div class="ico-rhombus"></div>
+																																							<div class="txt-item">Summon Animation Speed</div>
+																																						</div>
+																																						<div class="prt-radio-box set-summon-speed">
+																																							<div class="prt-set-radio">
+																																								<input id="summon_speed_normal" name="summon-speed" type="radio" value="1"<% if(summon_speed == 1){ %> checked<% } %>>
+																																									<label for="summon_speed_normal" class="btn-usual-setting">Standard</label>
+																																								</div>
+																																								<div class="prt-set-radio">
+																																									<input id="summon_speed_high" name="summon-speed" type="radio" value="2"<% if(summon_speed == 2){ %> checked<% } %>>
+																																										<label for="summon_speed_high" class="btn-usual-setting">Fast</label>
+																																									</div>
+																																									<div class="prt-set-radio">
+																																										<input id="summon_speed_cut" name="summon-speed" type="radio" value="3"<% if(summon_speed == 3){ %> checked<% } %>>
+																																											<label for="summon_speed_cut" class="btn-usual-setting">Skip</label>
+																																										</div>
+																																									</div>
+																																									<div class="prt-setting-button">
+																																										<div class="btn-set-setting display">Save Changes</div>
+																																									</div>
+																																								</div>
+																																							</script>
+<script type="text/template" id="tpl-pop-setting-assist"> <div class="prt-menu">
+																																									<div class="prt-title">
+																																										<div class="ico-rhombus"></div>
+																																										<div class="txt-item">救援依頼ウィンドウの表示スキップ</div>
+																																									</div>
+																																									<ul class="txt-article-lead">
+																																										<li>「ON」設定の場合、マルチバトル開始時に救援依頼ウィンドウの表示がスキップされます。</li>
+																																									</ul>
+																																									<div class="prt-radio-box set-assist-pop-force">
+																																										<div class="prt-set-radio">
+																																											<input id="assist-pop-off" name="assist-pop-force" type="radio" value="0"<% if(is_skip_to_request_assistance == 0){ %> checked<% } %>>
+																																												<label for="assist-pop-off" class="btn-usual-setting">Off</label>
+																																											</div>
+																																											<div class="prt-set-radio">
+																																												<input id="assist-pop-on" name="assist-pop-force" type="radio" value="1"<% if(is_skip_to_request_assistance == 1){ %> checked<% } %>>
+																																													<label for="assist-pop-on" class="btn-usual-setting">On</label>
+																																												</div>
+																																											</div>
+																																											<div class="prt-title">
+																																												<div class="ico-rhombus"></div>
+																																												<div class="txt-item">参戦者の救援依頼</div>
+																																											</div>
+																																											<ul class="txt-article-lead">
+																																												<li>自分が発見したマルチバトルにおいて、参戦者が救援依頼を出せるかどうか設定できます。</li>
+																																												<li>「OFF」設定の場合、自分が発見したマルチバトルにおいて、参戦者は救援依頼を出すことはできません。</li>
+																																											</ul>
+																																											<div class="prt-radio-box set-allow-assist">
+																																												<div class="prt-set-radio">
+																																													<input id="allow-assist-off" name="allow-assist" type="radio" value="0"<% if(is_guests_allowed_to_request_assistance == 0){ %> checked<% } %>>
+																																														<label for="allow-assist-off" class="btn-usual-setting">Off</label>
+																																													</div>
+																																													<div class="prt-set-radio">
+																																														<input id="allow-assist-on" name="allow-assist" type="radio" value="1"<% if(is_guests_allowed_to_request_assistance == 1){ %> checked<% } %>>
+																																															<label for="allow-assist-on" class="btn-usual-setting">On</label>
+																																														</div>
+																																													</div>
+																																													<div class="prt-title">
+																																														<div class="ico-rhombus"></div>
+																																														<div class="txt-item">Auto-Displaying Backup Request</div>
+																																													</div>
+																																													<ul class="txt-article-lead">
+																																														<li>Tap On to automatically display the backup request pop-up as additional requests can be sent.</li>
+																																													</ul>
+																																													<div class="prt-radio-box set-assist-popup-auto">
+																																														<div class="prt-set-radio">
+																																															<input id="assist-popup-auto-off" name="assist-popup-auto" type="radio" value="0"<% if(+is_show_assist_popup_auto === 0){ %> checked<% } %>>
+																																																<label for="assist-popup-auto-off" class="btn-usual-setting">Off</label>
+																																															</div>
+																																															<div class="prt-set-radio">
+																																																<input id="assist-popup-auto-on" name="assist-popup-auto" type="radio" value="1"<% if(+is_show_assist_popup_auto === 1){ %> checked<% } %>>
+																																																	<label for="assist-popup-auto-on" class="btn-usual-setting">On</label>
+																																																</div>
+																																															</div>
+																																															<div class="prt-title">
+																																																<div class="ico-rhombus"></div>
+																																																<div class="txt-item">Backup Request Cooldown Timer</div>
+																																															</div>
+																																															<ul class="txt-article-lead">
+																																																<li>Tap Off to change the timer for subsequent backup requests into a gauge.</li>
+																																															</ul>
+																																															<div class="prt-radio-box">
+																																																<div class="prt-set-radio">
+																																																	<input id="assist-remain-display-gauge" name="assist-remain-display-mode" type="radio" value="1"<% if(+is_show_assist_time_mode_gauge === 1){ %> checked<% } %>>
+																																																		<label for="assist-remain-display-gauge" class="btn-usual-setting">Off</label>
+																																																	</div>
+																																																	<div class="prt-set-radio">
+																																																		<input id="assist-remain-display-time" name="assist-remain-display-mode" type="radio" value="0"<% if(+is_show_assist_time_mode_gauge === 0){ %> checked<% } %>>
+																																																			<label for="assist-remain-display-time" class="btn-usual-setting">On</label>
+																																																		</div>
+																																																	</div>
+																																																	<div class="prt-setting-button">
+																																																		<div class="btn-set-setting assist">Save Changes</div>
+																																																	</div>
+																																																</div>
+																																															</script>
+<script type="text/template" id="tpl-pop-setting-chat"> <div class="prt-menu"><% if(stage.pJsnData.multi){ %>
+																																																	<div class="prt-title">
+																																																		<div class="ico-rhombus"></div>
+																																																		<div class="txt-item">ボイススタンプ設定</div>
+																																																	</div>
+																																																	<ul class="txt-article-lead">
+																																																		<li>マルチバトルにおいて、ボイス対応スタンプを送信・または受信した際の、ご利用の端末での音声再生の有無を設定できます</li>
+																																																	</ul>
+																																																	<div class="prt-radio-box">
+																																																		<div class="prt-set-radio">
+																																																			<input id="voice-stamp-on" name="voice-stamp" type="checkbox" value="1"<% if(voice_stamp == 1){ %> checked<% } %>>
+																																																				<label for="voice-stamp-on" class="btn-usual-setting-l txt-small">音声を再生する</label>
+																																																			</div>
+																																																		</div>
+																																																		<div class="prt-title">
+																																																			<div class="ico-rhombus"></div>
+																																																			<div class="txt-item">マルチバトルでの表示</div>
+																																																		</div>
+																																																		<ul class="txt-article-lead">
+																																																			<li>マルチバトルにおける他のプレイヤーのスタンプの表示の有無を設定できます</li>
+																																																		</ul>
+																																																		<div class="prt-radio-box">
+																																																			<div class="prt-set-radio">
+																																																				<input id="show-others-stamp-on" name="show-others-stamp" type="checkbox" value="1"<% if(chat_stamp_flag == 1){ %> checked<% } %>>
+																																																					<label for="show-others-stamp-on" class="btn-usual-setting-l txt-small">スタンプを表示</label>
+																																																				</div>
+																																																			</div><% } %><% if(chat_active_notice != 0){ %>
+																																																			<div class="prt-title">
+																																																				<div class="ico-rhombus"></div>
+																																																				<div class="txt-item">Real-Time Chat Messages</div>
+																																																			</div>
+																																																			<ul class="txt-article-lead">
+																																																				<li>Receive real-time crew chat messages during battle.</li>
+																																																			</ul>
+																																																			<div class="prt-radio-box">
+																																																				<div class="prt-set-radio">
+																																																					<input id="guild-chat-active-notice-onbattle-off" name="guild-chat-active-notice-onbattle" type="radio" value="0" <% if(chat_active_notice_onbattle == 0){ %>checked="checked"<% } %>>
+																																																						<label for="guild-chat-active-notice-onbattle-off" class="btn-usual-setting-l">Block</label>
+																																																					</div>
+																																																					<div class="prt-set-radio">
+																																																						<input id="guild-chat-active-notice-onbattle-on" name="guild-chat-active-notice-onbattle" type="radio" value="1" <% if(chat_active_notice_onbattle == 1){ %>checked="checked"<% } %>>
+																																																							<label for="guild-chat-active-notice-onbattle-on" class="btn-usual-setting-l">Receive</label>
+																																																						</div>
+																																																					</div><% } %>
+																																																					<div class="prt-setting-button">
+																																																						<div class="btn-set-setting chat">Save Changes</div>
+																																																					</div>
+																																																				</div>
+																																																			</script>
+<div class="pop-usual prt-ability-dialog">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name">Name:</div>
+        <div class="effect">Effect:</div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prt-switch-special"></div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel btn-ability-cancel"></div>
+    <div class="btn-usual-ok btn-ability-use" ability-id="" ability-character-num=""></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-prt-switch-special"> <div class="txt-name"><%= name %>
+																																																				</div>
+																																																				<div class="txt-comment"><%= comment %>
+																																																				</div>
+																																																			</script>
+<div class="pop-usual prt-ability-stamped">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon ability-disable">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name">Name:</div>
+        <div class="effect">Effect:</div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="txt-ability-stamped"> This skill can't <br> be used now. </div>
+  <div class="txt-used-start-recast"> This skill can only be used once. </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-close"></div>
+  </div>
+</div>
+<div class="pop-usual pop-select-member">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name"></div>
+        <div class="effect"></div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prt-wrapper">
+      <div class="txt-select-chara">Select a Character</div>
+      <div class="prt-character">
+        <div class="lis-character0 btn-command-character" pos="0">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+        <div class="lis-character1 btn-command-character" pos="1">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+        <div class="lis-character2 btn-command-character" pos="2">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+        <div class="lis-character3 btn-command-character" pos="3">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+        <div class="lis-character4 btn-command-character" pos="4">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+        <div class="lis-character5 btn-command-character" pos="5">
+          <img class="img-chara-command" src="">
+          <div class="prt-status hideable"></div>
+          <div class="prt-hp-info">
+            <div class="img-text-hp hideable"></div>
+            <div class="txt-hp-value hideable"></div>
+            <div class="txt-coating-value"></div>
+            <div class="prt-gauge-hp hideable">
+              <div class="prt-gauge-hp-inner"></div>
+            </div>
+          </div>
+          <div class="prt-special-info">
+            <div class="img-text-special hideable"></div>
+            <div class="prt-gauge-special character4 hideable">
+              <div class="prt-gauge-special-inner"></div>
+              <div class="prt-shine"></div>
+              <div class="prt-black-mask"></div>
+            </div>
+            <div class="prt-percent hideable"></div>
+          </div>
+          <div class="img-text-ability hideable"></div>
+          <div class="prt-ability-state hideable">
+            <div class="lis-ability-state ability1"></div>
+            <div class="lis-ability-state ability2"></div>
+            <div class="lis-ability-state ability3"></div>
+            <div class="lis-ability-state ability4"></div>
+          </div>
+          <div class="prt-mask"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel"></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-ability-detail"> <div class="prt-icon"><%= img %>
+																																																											</div>
+																																																											<div class="prt-text">
+																																																												<div class="name"><%= name %>
+																																																												</div>
+																																																												<div class="effect"><%= effect %>
+																																																												</div>
+																																																												<div class="num">
+			Held:  <%= num %>
+																																																													<span class="txt-small">(<%= limit %>)
+																																																													</span> &gt;&gt;
+																																																													<span class="<% if((num - 1) <= 0) { %>txt-red<% } %>"><%= num - 1 %>
+																																																													</span>
+																																																													<span class="txt-small <% if((limit - 1) <= 0) { %>txt-red<% } %>">(<%= limit - 1 %>)
+																																																													</span>
+																																																												</div>
+																																																											</div>
+																																																										</script>
+<div class="pop-usual pop-ability-mark">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name"></div>
+        <div class="effect"></div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+        <div class="btn-ability-effect-info"></div>
+      </div>
+    </div>
+    <div class="prt-ability-mark">
+      <div class="lis-ability-mark mark1">
+        <div class="lis-ability-frame" mark="1"></div>
+        <div class="ico-ability-mark1"></div>
+      </div>
+      <div class="lis-ability-mark mark2">
+        <div class="lis-ability-frame" mark="2"></div>
+        <div class="ico-ability-mark2"></div>
+      </div>
+      <div class="lis-ability-mark mark3">
+        <div class="lis-ability-frame" mark="3"></div>
+        <div class="ico-ability-mark3"></div>
+      </div>
+      <div class="lis-ability-mark mark4">
+        <div class="lis-ability-frame" mark="4"></div>
+        <div class="ico-ability-mark4"></div>
+      </div>
+    </div>
+    <div class="txt-info"></div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel"></div>
+    <div class="btn-usual-text"></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-condition-list"><%
+		
+		var _isBattle = typeof isBattle !== 'undefined' && isBattle;
+		var CONDITIONS_BY_PAGE = _isBattle ? 4 : 8;
+		
+		var _chunk = function(array, count) {
+			var i = 0, length = array.length;
+			var result = [];
+			while (i < length) {
+				result.push(Array.prototype.slice.call(array, i, i += count));
+			}
+			return result;
+		};
+
+		
+		var conditionArray = _.chain(condition)
+			.map(function(conditions, key) {
+				return _.map(conditions, function(condition) {
+					return {
+						type: key,
+						data: condition
+					};
+				});
+			})
+			.flatten()
+			.value();
+
+		
+		var pagedConditionArray = _chunk(conditionArray, CONDITIONS_BY_PAGE);
+	%>
+																																																											<div class="prt-condition-list">
+																																																												<div class="prt-condition-wrapper <% if (conditionArray.length > CONDITIONS_BY_PAGE && typeof isIOS !== 'undefined' && isIOS === true) print('is-ios'); %>"><% _.each(pagedConditionArray, function(conditionArray) { %>
+																																																													<div class="lis-condition-slider"><% _.each(conditionArray, function(condition) { %>
+																																																														<div class="lis-conditon <%= condition.type %>">
+																																																															<div class="prt-icon">
+																																																																<img class="img-ico-status-ms" src="assets/img_low/sp/ui/icon/status/x64/status_<%= condition.data.status %>.png">
+																																																																</div>
+																																																																<div class="prt-detail">
+																																																																	<div class="txt-explain"><%= condition.data.detail %>
+																																																																	</div><% if (!_.isUndefined(condition.data.effect) && !_.isEmpty(condition.data.effect)) { %>
+																																																																	<div class="txt-effect">効果時間: <%= condition.data.effect %>
+																																																																	</div><% } %>
+																																																																</div><% if (!_.isUndefined(condition.data.help_flag) && !_.isEmpty(condition.data.help_flag)) { %>
+																																																																<div class="prt-info">
+																																																																	<div class="btn-ability-info" data-href="help_detail/6/1/<%= condition.data.help_flag %>">
+																																																																	</div>
+																																																																</div><% } %>
+																																																															</div><% }); %>
+																																																														</div><% }); %>
+																																																													</div>
+																																																												</div>
+																																																											</script>
+<div class="pop-usual pop-ability-hiddenweapon">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name"></div>
+        <div class="effect"></div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+      </div>
+      <div class="btn-skip" data-active="0" set="ability_popup" active="0" targets=".prt-ability-skip">
+        <div class="img-mask"></div>
+      </div>
+    </div>
+    <div class="txt-info js-lead-text"></div>
+    <div class="txt-additional-notes"></div>
+    <div class="txt-trialbattle-comment">Trial battle secret gear will be used.</div>
+    <div class="prt-ninja-mark">
+      <div class="prt-specific-frame">
+        <div class="prt-item-box"></div>
+      </div>
+    </div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel"></div>
+    <div class="disable-hiddenweapon"></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-item-hiddenweapon"><% _.each(list.hiddenweapon_info.set_hidden_weapon, function(item, key) { %><% if (item.hiddenweapon_id && (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) <= 0) { %>
+																																																												<div class="btn-box empty">
+																																																													<div class="prt-thum">
+																																																														<img class="img-item" src="assets/img_low/sp/assets/item/hiddenweapon/s/<%= item.hidden_weapon_info.item_id %>.jpg" alt="
+																																																															<%= item.hidden_weapon_info.item_id %>" />
+																																																														</div>
+																																																														<div class="img-mask">
+																																																															<div class="prt-limit-message">Limit</div>
+																																																														</div><% if(!isTrial){ %>
+																																																														<div class="prt-stock">
+																																																															<span class="<% if (item.number <= 0) { %>txt-red<% } %>"><%= item.number %>
+																																																															</span>
+																																																															<span class="txt-small">(
+																																																																<span class="txt-red"><%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>
+																																																																</span>)
+																																																															</span>
+																																																														</div><% }else{ %>
+																																																														<div class="prt-stock">
+																																																															<span class="txt-trialbattle">∞</span>
+																																																															<span class="txt-small">(<%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>)
+																																																															</span>
+																																																														</div><% } %>
+																																																													</div><% } else if (item.hiddenweapon_id && item.number <= 0) { %>
+																																																													<div class="btn-box empty">
+																																																														<div class="prt-thum">
+																																																															<img class="img-item" src="assets/img_low/sp/assets/item/hiddenweapon/s/<%= item.hidden_weapon_info.item_id %>.jpg" alt="
+																																																																<%= item.hidden_weapon_info.item_id %>" />
+																																																															</div>
+																																																															<div class="img-mask">
+																																																																<div class="prt-empty-message">No more
+																																																																	<br>left
+																																																																	</div>
+																																																																</div><% if(!isTrial){ %>
+																																																																<div class="prt-stock">
+																																																																	<span class="txt-red"><%= item.number %>
+																																																																	</span>
+																																																																	<span class="txt-small<% if (+item.hidden_weapon_info.used_count === 0) { %> txt-yellow<% } %>">(<%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>)
+																																																																	</span>
+																																																																</div><% }else{ %>
+																																																																<div class="prt-stock">
+																																																																	<span class="txt-trialbattle">∞</span>
+																																																																	<span class="txt-small<% if (+item.hidden_weapon_info.used_count === 0) { %> txt-yellow<% } %>">(<%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>)
+																																																																	</span>
+																																																																</div><% } %>
+																																																															</div><% } else if (item.hiddenweapon_id) { %>
+																																																															<div class="btn-box enabled" data-pos="<%= item.set_pos %>" data-item-id="<%= item.hidden_weapon_info.item_id %>" data-name="<%= item.hidden_weapon_info.name %>"  data-comment="<%= item.hidden_weapon_info.comment %>"  data-number="<%= item.number %>" data-limit="<%= item.hidden_weapon_info.use_limit %>" data-pick="<%= item.hidden_weapon_info.pick %>">
+																																																																<div class="prt-thum">
+																																																																	<img class="img-item" src="assets/img_low/sp/assets/item/hiddenweapon/s/<%= item.hidden_weapon_info.item_id %>.jpg" alt="
+																																																																		<%= item.hidden_weapon_info.item_id %>" />
+																																																																	</div>
+																																																																	<div class="img-mask"></div><% if(!isTrial){ %>
+																																																																	<div class="prt-stock"><%= item.number %>
+																																																																		<span class="txt-small<% if (+item.hidden_weapon_info.used_count === 0) { %> txt-yellow<% } %>">(<%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>)
+																																																																		</span>
+																																																																	</div><% }else{ %>
+																																																																	<div class="prt-stock">
+																																																																		<span class="txt-trialbattle">∞</span>
+																																																																		<span class="txt-small<% if (+item.hidden_weapon_info.used_count === 0) { %> txt-yellow<% } %>">(<%= (item.hidden_weapon_info.use_limit - item.hidden_weapon_info.used_count) %>)
+																																																																		</span>
+																																																																	</div><% } %>
+																																																																</div><% } else { %>
+																																																																<div class="btn-box">
+																																																																	<div class="prt-thum">
+																																																																		<img class="img-item" src="assets/img_low/sp/job/\hidden_weapon/empty.jpg" alt="empty" />
+																																																																	</div>
+																																																																	<div class="img-mask"></div>
+																																																																	<div class="prt-stock">-
+																																																																		<span class="txt-small">(-)</span>
+																																																																	</div>
+																																																																</div><% } %><% }); %>
+																																																															</script>
+<script type="text/template" id="tpl-prt-item-box-ability"><% _.each(select_ability_info, function(ability, index){ %>
+																																																																<div class="btn-box enabled" data-pos="<%= index %>">
+																																																																	<div class="prt-thum">
+																																																																		<img class="img-item" src="assets/img_low/sp/assets/item/ability/s/<%= ability.image %>.jpg">
+																																																																		</div>
+																																																																		<div class="img-mask"></div>
+																																																																	</div><% }); %>
+																																																																</script>
+<div class="pop-usual pop-ability-lupiflip">
+  <div class="prt-popup-header">Use Skill</div>
+  <div class="prt-popup-body">
+    <div class="prt-ability-detail">
+      <div class="prt-icon">
+        <div class=""></div>
+      </div>
+      <div class="prt-text">
+        <div class="name">Name:</div>
+        <div class="effect">Effect:</div>
+        <div class="time">
+          <div class="recast"></div>
+          <div class="duration"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prt-lupiflip"></div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel"></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-lupiflip"><% if(!isTrial){ %>
+																																																																	<div class="prt-info">
+			Rupies Held: <%= list.lupiflip_info.user_total_amount %>
+																																																																		<br>
+			Rupies Available: <%= list.lupiflip_info.available_amount %>
+																																																																		</div><% }else{ %>
+																																																																		<div class="prt-info">
+																																																																			<div class="txt-trial-lupi">
+				Trial battle rupies will be used.
+																																																																				<br>
+				Trial battle rupies held: ∞
+			
+																																																																				</div>
+			Rupies Available: <%= list.lupiflip_info.available_amount %>
+																																																																			</div><% } %><% _.each(list.lupiflip_info.lupiflip_data, function(item, key) { %>
+																																																																			<div class="prt-box<% if((isTrial || (parseInt(item.use_amount) <= parseInt(list.lupiflip_info.user_total_amount))) && (parseInt(item.use_amount) <= parseInt(list.lupiflip_info.available_amount))) { %> btn-lupiflip<% } %>" data-id="<%= key-1 %>" data-amount="<%= item.use_amount %>">
+																																																																				<div class="prt-thum">
+																																																																					<img class="img-item" src="assets/img_low/sp/raid/rupie_flip/thumb_rupieflip<%= key %>.png" alt="thumb_rupieflip
+																																																																						<%= key %>" />
+																																																																					</div>
+																																																																					<div class="img-mask"></div>
+																																																																					<div class="prt-lupi">
+																																																																						<div class="txt-lupi"><%= item.name %>
+																																																																						</div>
+																																																																					</div>
+																																																																				</div><% }); %>
+																																																																			</script>
+<div class="pop-usual pop-summon-detail">
+  <div class="prt-popup-header">Summons Details</div>
+  <div class="prt-popup-body">
+    <div class="txt-summon-name"></div>
+    <div class="prt-summon-detail">
+      <div class="prt-icon">
+        <img class="img-summon" src="">
+      </div>
+      <div class="prt-text-info">
+        <div class="txt-subhead">Call</div>
+        <div class="prt-detail-box red">
+          <div class="name txt-summon-skill"></div>
+          <div class="body txt-summon-effect"></div>
+          <div class="prt-recast-wrapper">
+            <div class="start-recast"></div>
+            <div class="recast"></div>
+          </div>
+        </div>
+        <div class="txt-subhead">Aura</div>
+        <div class="prt-detail-box blue">
+          <div class="name txt-summon-protection-name"></div>
+          <div class="body txt-summon-protection"></div>
+          <div class="txt-disenable"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="prt-popup-footer">
+    <div class="btn-usual-cancel"></div>
+    <div class="btn-usual-ok btn-summon-use" summon-id=""></div>
+  </div>
+</div>
+<script type="text/template" id="tpl-condition-effect-list"> <div class="prt-condition-title"></div><% if ( tgt==1 ) { %>
+																																																																					<a class="btn-targeting" data-target="<%= pos %>" data-title="<% if ( pos==stage.gGameStatus.target ){ %>Cancel Target<% } else { %>Set Target<% } %>">
+																																																																					</a><% } %>
+																																																																					<div id="prt-condition-list" class="prt-condition-list"><% if(_.isEmpty(condition.presages) === false){ %>
+																																																																						<div class="lis-conditon presage<%= condition.presages.status %>">
+																																																																							<div class="prt-icon">
+																																																																								<img class="img-ico-status-ms" src="assets/img_low/sp/ui/icon/status/advanced/status_<%= condition.presages.status %>.png">
+																																																																								</div>
+																																																																								<div class="prt-detail">
+																																																																									<div class="txt-explain"><%= condition.presages.detail %>
+																																																																									</div>
+																																																																								</div>
+																																																																							</div><% } %><% if(_.isEmpty(condition.hpTriggerSuper) === false){ %>
+																																																																							<div class="lis-conditon super">
+																																																																								<div class="prt-detail">
+																																																																									<div class="txt-explain"><%= condition.hpTriggerSuper.special_skill_text %>
+																																																																										<br><%= condition.hpTriggerSuper.special_skill_damage_text %>
+																																																																										</div>
+																																																																									</div>
+																																																																								</div><% } %><% _.each(condition.buff, function(value,key) { %>
+																																																																								<div class="lis-conditon buff">
+																																																																									<div class="prt-icon">
+																																																																										<img class="img-ico-status-ms" src="assets/img_low/sp/ui/icon/status/x64/status_<%= value.status %>.png">
+																																																																										</div>
+																																																																										<div class="prt-detail">
+																																																																											<div class="txt-explain"><%= value.detail %>
+																																																																											</div><% if(value.remain != 0) { %>
+																																																																											<div class="txt-remain <% if(value.class === "turn" && value.remain === 1) { %>one <% } %><%= value.class %>"><%= value.remain %>
+																																																																											</div><% } %>
+																																																																										</div>
+																																																																									</div><% }); %><% _.each(condition.debuff, function(value,key) { %>
+																																																																									<div class="lis-conditon debuff">
+																																																																										<div class="prt-icon">
+																																																																											<img class="img-ico-status-ms" src="assets/img_low/sp/ui/icon/status/x64/status_<%= value.status %>.png">
+																																																																											</div>
+																																																																											<div class="prt-detail">
+																																																																												<div class="txt-explain"><%= value.detail %>
+																																																																												</div><% if(value.remain != 0) { %>
+																																																																												<div class="txt-remain <% if(value.class === "turn" && value.remain === 1) { %>one <% } %><%= value.class %>"><%= value.remain %>
+																																																																												</div><% } %>
+																																																																											</div>
+																																																																										</div><% }); %><% if( condition.buff.length==0 && condition.debuff.length==0 && _.isEmpty(condition.presages) === true && _.isEmpty(condition.hpTriggerSuper)){ %>
+		There are no active status effects.
+	<% } %>
+																																																																									</div>
+																																																																								</script>
+<script type="text/template" id="tpl-pop-field-condition"> <div class="prt-field-condition-title"></div>
+																																																																									<div id="prt-condition-list" class="prt-condition-list"><% _.each(field_effect, function(value,key) { %>
+																																																																										<div class="lis-conditon field">
+																																																																											<div class="prt-icon">
+																																																																												<img class="img-ico-status-ms" src="assets/img_low/sp/ui/icon/field_effect/status_<%= value.status %>.png">
+																																																																												</div>
+																																																																												<div class="prt-detail">
+																																																																													<div class="txt-explain"><%= value.detail %>
+																																																																													</div><% if(value.remain != 0) { %>
+																																																																													<div class="txt-remain <%= value.class %>"><%= value.remain %>
+																																																																													</div><% } %>
+																																																																												</div>
+																																																																											</div><% }); %><% if(1 > field_effect.length){ %>
+			No field effects activated.
+		<% } %>
+																																																																										</div>
+																																																																									</script>
+<script type="text/template" id="tpl-pop-withdraw"> <div class="prt-lose">
+																																																																											<div class="prt-menu-list">
+																																																																												<div class="prt-title">
+																																																																													<div class="ico-rhombus"></div>
+																																																																													<div class="txt-item">Loot Collected</div>
+																																																																												</div>
+																																																																											</div>
+																																																																											<div class="prt-menu-list">
+																																																																												<div class="ico-item"></div>
+																																																																												<div class="txt-value"><%= treasure5 %>
+																																																																												</div>
+																																																																												<div class="ico-treasure1"></div>
+																																																																												<div class="txt-treasure1"><%= treasure1 %>
+																																																																												</div>
+																																																																												<div class="ico-treasure2"></div>
+																																																																												<div class="txt-treasure2"><%= treasure2 %>
+																																																																												</div>
+																																																																												<div class="ico-treasure3"></div>
+																																																																												<div class="txt-treasure3"><%= treasure3 %>
+																																																																												</div>
+																																																																												<div class="ico-coin"></div>
+																																																																												<div class="txt-coin"><%= lupi %>
+																																																																												</div>
+																																																																											</div>
+																																																																											<div class='txt-lose-notice'>
+			If you retreat, the items, rupies, and EXP that you collected will be lost.
+		</div><% if ( use_ap ){ %>
+																																																																											<div class='txt-lose-notice return-ap'><% if(isReplicard){ %>
+					
+					This quest is incomplete, so the AAP you spent will be returned.
+				<% }else{ %>
+					This is an uncleared quest. AP will be returned.
+				<% } %>
+																																																																											</div><% } %>
+																																																																										</div>
+																																																																									</script>
+<script type="text/template" id="tpl-pop-withdraw-trialbatle"> <div class="txt-withdraw-trialbatle">Retreat from battle and return to the Trial Battles screen?</div>
+																																																																									</script>
+<script type="text/template" id="tpl-pop-withdraw-arcarum"> <div class="txt-withdraw-info">Retreat from battle?</div>
+																																																																										<div class='txt-withdraw-notice'>
+		Any items, EXP, and rupies earned in
+																																																																											<br>this battle will be lost.
+	
+																																																																											</div>
+																																																																										</script>
+<script type="text/template" id="tpl-pop-result-withdraw-sequence"> <div class="prt-lose">
+																																																																												<div class="txt-lead-sequence">Retreat from battle?</div>
+																																																																												<div class='txt-lose-notice'>
+			Any items, EXP, and rupies earned in
+																																																																													<br>this battle will be lost.
+																																																																														<br>
+																																																																															<br><% if (isOpenEvent) { %>
+				The sortie will remain in progress even if you retreat from this battle.
+			<% } else { %>
+				The sortie will end if you retreat from this battle.
+			<% } %>
+																																																																															</div>
+																																																																														</div>
+																																																																													</script>
+<script type="text/template" id="tpl-pop-lose"> <div class="txt-lose">Your party was knocked out.
+																																																																															<br> Use <%= item_name %> to continue?
+																																																																															</div>
+																																																																															<div class="prt-item-possesed">
+																																																																																<div class="txt-item-name"><%= item_name %>
+																																																																																</div>
+																																																																																<div class="txt-item-count">
+																																																																																	<span class="item-number"><%= number %>
+																																																																																	</span>
+																																																																																</div>
+																																																																															</div>
+																																																																														</script>
+<script type="text/template" id="tpl-pop-use-item"> <div class="txt-use-item"><% if( confirm=="normal" ){ %>
+			Use <%= item_name.toLowerCase() %>?
+		<% }else{ %>
+			Use <%= item_name %> and rejoin?
+																																																																																<br><% if(!isTrial){ %>
+																																																																																	<span>Items won't be used if you cancel.</span><% } %><% } %>
+																																																																																</div>
+																																																																																<div class="prt-item-list">
+																																																																																	<div class="lis-item"><% if(!isTrial){ %>
+																																																																																		<div class="prt-item-image">
+																																																																																			<img class="img-shop-item" src="assets/img_low/sp/assets/item/normal/s/1.jpg" alt="1" />
+																																																																																		</div><% }else{ %>
+																																																																																		<div class="prt-item-image">
+																																																																																			<img src="assets/img_low/sp/assets/item/normal/s/trial_1.jpg" class="img-shop-item">
+																																																																																			</div><% } %>
+																																																																																		</div>
+																																																																																	</div>
+																																																																																	<div class="prt-item-result">
+																																																																																		<div class="txt-stamina-title"><%= item_name %>
+																																																																																		</div><% if(!isTrial){ %>
+																																																																																		<div class="txt-item-result">
+																																																																																			<span class="before"><%= before %>
+																																																																																			</span> &gt;&gt; 
+																																																																																			<span class="after"><%= after %>
+																																																																																			</span>
+																																																																																		</div><% } %>
+																																																																																	</div><% if(isTrial){ %>
+																																																																																	<div class="txt-trial-item-comment">This elixir is for trial battles only.</div><% } %>
+																																																																																	<div class="txt-item-comment">
+		Full HP recovery, full charge bars, and removal of debuff effects for allies.
+																																																																																		<br>
+		The party will be restored to its starting state.
+	
+																																																																																		</div><% if( confirm=="normal" ){ %>
+																																																																																		<div class="txt-notice">
+			All allies have full HP.
+																																																																																			<br>Use this item anyway?
+		
+																																																																																			</div><% } %><% if( typeof(potion_limit)!="undefined" && potion_limit.number>0 && potion_limit.number
+																																																																																			<65535){ %><% if( potion_limit.remain>0 ){ %>
+																																																																																				<div class="txt-limit">
+				Uses left: <%= potion_limit.remain %>
+																																																																																				</div><% } %><% } %>
+																																																																																			</script>
+<script type="text/template" id="tpl-pop-potion-limit"><% if (isAscendantPrayer) { %>
+																																																																																				<div class="txt-attention">
+			強制全滅技を受けたため、
+																																																																																					<br>エリクシールを使用することができません。
+																																																																																						<br>
+																																																																																							<br>復活できないため撤退する必要があります。
+		
+																																																																																							</div><% } else if (potion_limit.number === 0 || isNoLongerAllowedElixir === true) { %>
+																																																																																							<div class="txt-attention">
+			You can't use elixirs in this battle.
+		</div><% } else { %>
+																																																																																							<div class="txt-attention">
+			You've already used as many elixirs
+																																																																																								<br>
+			as you can in this battle.
+		
+																																																																																								</div>
+																																																																																								<div class="txt-limit">
+			Times Usable: <%= potion_limit.number %>
+																																																																																								</div><% } %><% if (lose_pop_flg == 1) { %>
+																																																																																								<div class="txt-single">
+			You must retreat.
+		</div><% } %>
+																																																																																							</script>
+<script type="text/template" id="tpl-pop-continue-event"> <div class="txt-use-item">
+		Use an item and try again?
+																																																																																									<br>
+																																																																																										<span>Items won't be used if you cancel.</span>
+																																																																																									</div>
+																																																																																									<div class="prt-item-list<% if(!can_use_event_item){ %> event-coop<% } %>"><% if(can_use_event_item){ %>
+																																																																																										<div class="lis-item <%if(event_item.number!=0){print('disable')}%>"><% if(+stage.pJsnData.event.event_type === CONST_EVENT_TYPE.TEAMRAID || +stage.pJsnData.event.event_type === CONST_EVENT_TYPE.TEAMFORCE){ %>
+																																																																																											<img class="img-item" src="assets/img_low/sp/assets/item/event/temporary/s/3.jpg" alt="3" /><% } else if (stage.pJsnData.event.event_type==4){ %>
+																																																																																											<img class="img-item" src="assets/img_low/sp/assets/item/coopraid/s/5.jpg" alt="5" /><% } %>
+																																																																																											<div class="txt-stamina-title"><%= event_item.name %>
+																																																																																											</div>
+																																																																																											<div class="txt-item-result">
+																																																																																												<span class='before'><%= event_item.number %>
+																																																																																												</span> &gt;&gt; 
+																																																																																												<span class='after'><% if(event_item.number>0){ print( event_item.number -1 ) }else{print(0)} %>
+																																																																																												</span>
+																																																																																											</div><% if( event_item.number>0 ){ %>
+																																																																																											<div class="btn-event-use" item_id="<%= event_item.id %>">Use
+																																																																																											</div><% } else { %>
+																																																																																											<div class="btn-disable">Use</div><% } %>
+																																																																																										</div><% } %>
+																																																																																										<div class="lis-item <%if(before!=0){print('disable')}%>">
+																																																																																											<img class="img-item" src="assets/img_low/sp/assets/item/normal/s/1.jpg" alt="1" />
+																																																																																											<div class="txt-stamina-title"><%= item_name %>
+																																																																																											</div>
+																																																																																											<div class="txt-item-result">
+																																																																																												<span class="before"><%= before %>
+																																																																																												</span> &gt;&gt; 
+																																																																																												<span class="after"><%= after %>
+																																																																																												</span>
+																																																																																											</div><% if( before>0 && !isLimitedPotion){ %>
+																																																																																											<div class="btn-potion-use">Use</div><% } else { %>
+																																																																																											<div class="btn-disable">Use</div><% } %>
+																																																																																										</div>
+																																																																																									</div><% if(isLimitedPotion){ %>
+																																																																																									<div class="prt-limited-potion">
+																																																																																										<div class="txt-attention">
+				You've already used as many elixirs
+																																																																																											<br>
+				as you can in this battle.
+			
+																																																																																											</div>
+																																																																																											<div class="txt-limit">
+				Times Usable: <%= potionLimitNumber %>
+																																																																																											</div>
+																																																																																										</div><% } %>
+																																																																																									</script>
+<script type="text/template" id="tpl-pop-continue-arcarum"> <div class="txt-use-item">
+		Use an item and try again?
+																																																																																											<br>Tap the item to use.
+	
+																																																																																											</div>
+																																																																																											<div class="prt-item-list"><% _.each(arcarum.item, function(item){ %><% if(item.is_resurrection) { %><% if (+item.id !== 3) { %>
+																																																																																												<div class="lis-item btn-arcarum-item<% if(+item.number <= 0) { %> disable<% } %>" item-id="<%= item.id %>">
+																																																																																													<img src="assets/img_low/sp/assets/item/arcarum/s/<%= item.image %>.jpg" class="img-temporary">
+																																																																																														<div class="txt-name"><%= item.name %>
+																																																																																														</div>
+																																																																																														<div class="txt-having">Held: 　
+																																																																																															<span class="having-num"><%= item.number %>
+																																																																																															</span>
+																																																																																														</div>
+																																																																																													</div><% } %><% } %><% }) %>
+																																																																																												</div>
+																																																																																											</script>
+<script type="text/template" id="tpl-pop-no-item"> <div class="prt-item-image">
+																																																																																													<img class="img-item" src="assets/img_low/sp/assets/item/normal/s/1.jpg" alt="1" />
+																																																																																												</div>
+																																																																																												<div class="txt-no-item">You don't have any elixirs.</div>
+																																																																																												<div class="txt-info">Elixirs can be used during battles to fully revive all party members and fill the charge bar.</div>
+																																																																																												<div class="prt-select">
+																																																																																													<div class='btn-shop'>Shop</div>
+																																																																																													<div class='btn-stone'>Buy with crystals</div>
+																																																																																												</div>
+																																																																																											</script>
+<script type="text/template" id="tpl-pop-exchange"> <div class="cnt-confirm" article-id="<%= id  %>" data-duplicate-key="1">
+																																																																																													<img class="img-item" src="assets/img_low/sp/assets/item/normal/s/<%= image_path %>.jpg">
+																																																																																														<div class="item-name"><%= name %>
+																																																																																														</div>
+																																																																																														<div class="item-explain"><%= comment %>
+																																																																																														</div>
+																																																																																														<div class="item-price" price="<%= price %>">Required: <%= price %>
+																																																																																														</div>
+																																																																																														<div class="btn-buy-num">
+																																																																																															<select class="num-set"><% for (i = 1; i <= max_number; i++){ %><% if( (i < 16) || (i % 5 == 0) ){ %>
+																																																																																																<option value="<%= i %>" style="color: black;"><%= i %>
+																																																																																																</option><% } %><% } %>
+																																																																																															</select>
+																																																																																														</div>
+																																																																																														<div class="txt-after-money">Crystals held: 
+																																																																																															<span class="before-money"></span> &gt;&gt; 
+																																																																																															<span class="after-money"></span>
+																																																																																														</div>
+																																																																																														<div class="result"></div>
+																																																																																													</div>
+																																																																																												</script>
+<script type="text/template" id="tpl-pop-recover"> <div class="prt-select-item">
+																																																																																														<div class="txt-select">Tap the item to use.</div>
+																																																																																														<div class="prt-item-info"><% if (arcarumItemList !== false) { %>
+																																																																																															<div class="prt-item-list-arcarum">
+																																																																																																<div class="lis-item item-small btn-temporary-small <% if(temporary_potion_one_count_before==0) print('disable') %>">
+																																																																																																	<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/1.jpg" alt="1" />
+																																																																																																	<div class="txt-name"><%= temporary_potion_one_name %>
+																																																																																																	</div>
+																																																																																																	<div class="txt-having">
+							Held: 　
+																																																																																																		<span class='having-num'><%= temporary_potion_one_count_before %>
+																																																																																																		</span>
+																																																																																																	</div>
+																																																																																																</div>
+																																																																																																<div class="lis-item item-large btn-temporary-large <% if(temporary_potion_all_count_before==0) print('disable') %>">
+																																																																																																	<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/2.jpg" alt="2" />
+																																																																																																	<div class="txt-name"><%= temporary_potion_all_name %>
+																																																																																																	</div>
+																																																																																																	<div class="txt-having">
+							Held: 　
+																																																																																																		<span class="having-num"><%= temporary_potion_all_count_before %>
+																																																																																																		</span>
+																																																																																																	</div>
+																																																																																																</div><%
+		var ITEM_ID_ARCARUM_RESURRECTION = 4;
+		var ITEM_ID_TP_RECOVER = 20;
+		var itemResurrection = arcarumItemList[ITEM_ID_ARCARUM_RESURRECTION];
+		var itemTpRecover = arcarumItemList[ITEM_ID_TP_RECOVER];
+	%><% var itemOnRail = (itemSumOnRail.ArcarumItem && itemSumOnRail.ArcarumItem[itemTpRecover.id]) || 0; %><% var itemNum = itemTpRecover.number - itemOnRail; %>
+																																																																																																<div class="lis-item btn-arcarum-item<% if(+itemNum <= 0) { %> disable<% } %>" item-id="<%= itemTpRecover.id %>">
+																																																																																																	<img src="assets/img_low/sp/assets/item/arcarum/s/<%= itemTpRecover.image %>.jpg" class="img-temporary">
+																																																																																																		<div class="txt-name"><%= itemTpRecover.name %>
+																																																																																																		</div>
+																																																																																																		<div class="txt-having">
+							Held: 　
+																																																																																																			<span class="having-num"><%= itemNum %>
+																																																																																																			</span>
+																																																																																																		</div>
+																																																																																																	</div><% _.each(arcarumItemList, function(item){ %><% if (+item.id !== 3 && +item.id !== ITEM_ID_TP_RECOVER) { %><% var itemOnRail = (itemSumOnRail.ArcarumItem && itemSumOnRail.ArcarumItem[item.id]) || 0; %><% itemNum = item.number - itemOnRail; %>
+																																																																																																	<div class="lis-item btn-arcarum-item<% if(+itemNum <= 0) { %> disable<% } %>" item-id="<%= item.id %>">
+																																																																																																		<img src="assets/img_low/sp/assets/item/arcarum/s/<%= item.image %>.jpg" class="img-temporary">
+																																																																																																			<div class="txt-name"><%= item.name %>
+																																																																																																			</div>
+																																																																																																			<div class="txt-having">
+									Held: 　
+																																																																																																				<span class="having-num"><%= itemNum %>
+																																																																																																				</span>
+																																																																																																			</div>
+																																																																																																		</div><% } %><% }) %>
+																																																																																																	</div><% } else { %>
+																																																																																																	<div class="lis-item item-small btn-temporary-small <% if(temporary_potion_one_count_before==0) print('disable') %>">
+																																																																																																		<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/1.jpg" alt="1" />
+																																																																																																		<div class="txt-name"><%= temporary_potion_one_name %>
+																																																																																																		</div>
+																																																																																																		<div class="txt-having">
+						Held: 　
+																																																																																																			<span class='having-num'><%= temporary_potion_one_count_before %>
+																																																																																																			</span>
+																																																																																																		</div>
+																																																																																																	</div>
+																																																																																																	<div class="lis-item item-large btn-temporary-large <% if(temporary_potion_all_count_before==0) print('disable') %>">
+																																																																																																		<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/2.jpg" alt="2" />
+																																																																																																		<div class="txt-name"><%= temporary_potion_all_name %>
+																																																																																																		</div>
+																																																																																																		<div class="txt-having">
+						Held: 　
+																																																																																																			<span class="having-num"><%= temporary_potion_all_count_before %>
+																																																																																																			</span>
+																																																																																																		</div>
+																																																																																																	</div><% if(!isTrial){ %>
+																																																																																																	<div class="lis-item item-potion btn-temporary-large <% if(potion_count_before==0) print('disable') %>">
+																																																																																																		<img class="img-temporary" src="assets/img_low/sp/assets/item/normal/s/1.jpg" alt="1" />
+																																																																																																		<div class="txt-name">Full Elixir</div>
+																																																																																																		<div class="txt-having">
+							Held: 　
+																																																																																																			<span class="having-num"><%= potion_count_before %>
+																																																																																																			</span>
+																																																																																																		</div>
+																																																																																																	</div><% }else{ %>
+																																																																																																	<div class="lis-item item-potion btn-temporary-large">
+																																																																																																		<img src="assets/img_low/sp/assets/item/normal/s/trial_1.jpg" class="img-temporary">
+																																																																																																			<div class="txt-name">Trial Elixir</div>
+																																																																																																			<div class="txt-having">
+							Held: 　
+																																																																																																				<span class="having-num is-trialbattle">∞</span>
+																																																																																																			</div>
+																																																																																																		</div>
+																																																																																																		<div class="prt-item-image"></div><% } %><% } %>
+																																																																																																	</div><% if( event!=false && can_use_event_item){ %>
+																																																																																																	<div class="prt-event-item">
+																																																																																																		<div class="prt-title"><% if(+event.event_type === CONST_EVENT_TYPE.TEAMRAID){ %>
+						
+						
+						Unite and Fight Items
+					<% } else if(+event.event_type === CONST_EVENT_TYPE.TEAMFORCE) { %>
+						Dread Barrage Items
+					<% } else if (event.event_type==4){ %>
+						Co-op Items:
+					<% } %>
+																																																																																																		</div>
+																																																																																																		<div class="prt-item-info num<%= Object.keys(event.item).length %>"><% _.each(event.item, function(item){ %><% var itemOnRail = (itemSumOnRail.EventItem && itemSumOnRail.EventItem[item.id]) || 0; %><% var itemNum = item.number - itemOnRail; %>
+																																																																																																			<div class="lis-item btn-event-item <% if(itemNum==0) print('disable') %>" item-id="<%= item.id %>"><% if(+event.event_type === CONST_EVENT_TYPE.TEAMRAID || +event.event_type === CONST_EVENT_TYPE.TEAMFORCE){ %>
+																																																																																																				<img class="img-temporary" src="assets/img_low/sp/assets/item/event/temporary/s/<%= item.image %>.jpg" alt="undefined<%= item.image %>" /><% } else if (event.event_type==4){ %>undefined<img class="img-temporary" src="assets/img_low/sp/assets/item/coopraid/s/<%= item.image %>.jpg" alt="undefined<%= item.image %>" /><% } %>undefined<div class="txt-name"><%= item.name %>undefined</div>undefined<div class="txt-having">
+								Held: 　undefined<span class="having-num"><%= itemNum %>undefined</span>undefined</div>undefined</div><% }) %>
+																																																																																																				</div>
+																																																																																																			</div><% } %>
+																																																																																																		</div>
+																																																																																																	</script>
+<script type="text/template" id="tpl-temporary-small"> <div class="prt-item-small">
+																																																																																																			<div class="prt-item-info">
+																																																																																																				<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/1.jpg" alt="1" />
+																																																																																																				<div class="prt-text">undefined<div class="txt-confirm">Use <%= temporary_potion_one_name.toLowerCase() %>?undefined</div>undefined<div class="txt-having">
+					Held: undefined<span class='having-num'><%= temporary_potion_one_count_before %>undefined</span>&gt;&gt;undefined<span class='after-num'><%= temporary_potion_one_count_after %>undefined</span>undefined</div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																			<div class="txt-select-chara">Tap a member to heal.</div>
+																																																																																																		</div>
+																																																																																																	</script>
+<script type="text/template" id="tpl-temporary-large"> <div class="prt-item-large">
+																																																																																																			<div class="prt-item-info">
+																																																																																																				<img class="img-temporary" src="assets/img_low/sp/assets/item/temporary/m/2.jpg" alt="2" />
+																																																																																																				<div class="prt-text">undefined<div class="txt-confirm">Use <%= temporary_potion_all_name.toLowerCase() %>.undefined</div>undefined<div class="txt-having">
+					Held: undefined<span class='having-num'><%= temporary_potion_all_count_before %>undefined</span>&gt;&gt;undefined<span class='after-num'><%= temporary_potion_all_count_after %>undefined</span>undefined</div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																			<div class="txt-select-chara">All members in battle will be healed.</div>
+																																																																																																		</div>
+																																																																																																	</script>
+<script type="text/template" id="tpl-temporary-event"> <div class="prt-item-event">
+																																																																																																			<div class="prt-item-info"><% if(+stage.pJsnData.event.event_type === CONST_EVENT_TYPE.TEAMRAID || +stage.pJsnData.event.event_type === CONST_EVENT_TYPE.TEAMFORCE){ %>
+																																																																																																				<img class="img-temporary" src="assets/img_low/sp/assets/item/event/temporary/s/<%= image %>.jpg" alt="undefined<%= image %>" /><% } else if (stage.pJsnData.event.event_type==4){ %>undefined<img class="img-temporary" src="assets/img_low/sp/assets/item/coopraid/s/<%= image %>.jpg" alt="undefined<%= image %>" /><% } %>undefined<div class="prt-text">undefined<div class="txt-confirm">Use <%= name.toLowerCase() %>undefined</div>undefined<div class="txt-having">
+					Held: undefined<span class='having-num'><%= number %>undefined</span>&gt;&gt;undefined<span class='after-num'><% print( number - 1 ); %>undefined</span>undefined</div>undefined</div>undefined</div>undefined<div class="txt-comment"><%= comment %>undefined</div>undefined<div class="txt-select-chara"></div>
+																																																																																																				</div>
+																																																																																																			</script>
+<script type="text/template" id="tpl-temporary-arcarum"><%
+		var ITEM_ID_ARCARUM_RESURRECTION = 4;
+		var ITEM_ID_TP_RECOVER = 20;
+		var itemResurrection = arcarumItemList[ITEM_ID_ARCARUM_RESURRECTION];
+		var itemTpRecover = arcarumItemList[ITEM_ID_TP_RECOVER];
+	%><% var selectedItem = arcarumItemList[selectedItemId]; %>
+																																																																																																				<div class="prt-item-event">undefined<div class="prt-item-info">undefined<img class="img-temporary" src="assets/img_low/sp/assets/item/arcarum/s/<%= selectedItem.image %>.jpg" alt="undefined<%= selectedItem.image %>" />undefined<div class="prt-text">undefined<div class="txt-confirm">Use <%= selectedItem.name.toLowerCase() %>undefined</div>undefined<div class="txt-having">
+					Held: undefined<span class='having-num'><%= itemNum %>undefined</span>&gt;&gt;undefined<span class='after-num'><% print( itemNum - 1 ); %>undefined</span>undefined</div>undefined</div>undefined</div>undefined<div class="txt-comment"><%= selectedItem.comment %>undefined</div><% if(paramChangeInfo !== null){ %>undefined<div class="prt-param-change">undefined<div class="prt-param-change-label"><%= paramChangeInfo.label %>undefined</div>undefined<div class="prt-param-change-info">undefined<span class="txt-param-before"><%= paramChangeInfo.before %>undefined</span>&gt;&gt;undefined<span class="txt-param-after"><%= paramChangeInfo.after %>undefined</span>undefined</div>undefined</div><% } %>undefined<div class="txt-select-chara"></div>undefined</div>
+																																																																																																				</script>
+<script type="text/template" id="tpl-revenge-bonus-pop-retire"><% if(isRetired === false){ %>undefined<div class="prt-revenge-bonus-title">Rebound Bonus</div><% } %>undefined<div class="txt-revenge-support-comment"><% if(1 == revengeBonusCount){ %><% if(isRetired === false){ %>
+				You will gain these buffs if you try again within the next two hours:
+			<% }else{ %>
+				You will gain these buffs if you try againundefined<br>within the next two hours:
+			<% } %><% }else{ %>
+			You will gain these buffs if you try againundefined<br>within two hours from your first retreat:
+		<% } %>undefined</div>undefined<div class="prt-popup-frame">undefined<div class="txt-bonus-num attack"><%= revengeBonusParam %>% boost to ATKundefined</div>undefined<div class="txt-bonus-num hp"><%= revengeBonusParam %>% boost to HPundefined</div><% if(+revengeBonusMax === +revengeBonusParam){ %>undefined<div class="txt-bonus-max">(The highest possible boost is <%= revengeBonusMax %>%.)undefined</div><% } %>undefined</div><% if(isRetired === true && ((isUseAp === true && _.isNull(useAp)) || (!_.isNull(useAp) && useAp == 0))){ %>undefined<div class="txt-revenge-support-comment">
+			No AP was used for this quest. No AP will be returned.
+		</div><% } %>undefined</script>undefined<script type="text/template" id="tpl-mypage">undefined<div class="txt-mypage">
+		Go to the Home screen?
+	</div>undefined<div class="txt-notice">
+		You can resume this battle at any time.undefined<br>
+		In order to play another quest, eitherundefined<br>
+		win the battle or retreat.undefined<br>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-mypage-coop">undefined<div class="txt-mypage">
+		Go to the Home screen?
+	</div>undefined<div class="txt-notice">
+		この共闘クエストはいつでも再開できます。undefined<br>通常のクエストも同時進行することがundefined<br>できますが、ボスが倒されるか時間切れにundefined<br>なると、このバトルは終了します。undefined<br>undefined<br>その場合「共闘クエストTOPページ」にundefined<br>アクセスすることでundefined<br>報酬を受け取ることができます。
+	undefined</div>undefined</script>undefined<script type="text/template" id="tpl-battle-service">undefined<div class="prt-battle-service-container"><% _.each(items.battle_service_list, function(val, key){ %><% if (+key === 1) { %>undefined<div class="prt-skill-boost-group1"><% _.each(val, function(v, k){ %>undefined<div class="prt-boost-item">undefined<div class="img-boost-thumb<% if(+v.group === 2){ %> use-single<% } %><% if(+v.consume_point > +score){ %> disable<% } else { %> btn-battle-service<% } %>" data-consume-point="<%= v.consume_point %>" data-service-comment="<%= v.service_comment %>" data-overlap-flag="<%= v.overlap_flag %>" data-service-id="<%= v.service_id %>">undefined<img src="assets/img_low/sp/event/treasureraid068/assets/other/<%= v.thumbnail %>.jpg">undefined</div>undefined<div class="prt-consume-point<% if(+v.consume_point > +score){ %> not-use<% } %>">undefined<span class='txt-point'><%= v.consume_point %>undefined</span> ptsundefined</div>undefined</div><% }); %>undefined</div><% } else if (+key === 2) { %>undefined<div class="prt-skill-boost-group2"><% _.each(val, function(v, k){ %>undefined<div class="prt-boost-item">undefined<div class="img-boost-thumb<% if(+v.group === 2){ %> use-single<% } %><% if(+v.consume_point > +score){ %> disable<% } else { %> btn-battle-service<% } %>" data-consume-point="<%= v.consume_point %>" data-service-comment="<%= v.service_comment %>" data-overlap-flag="<%= v.overlap_flag %>" data-service-id="<%= v.service_id %>">undefined<img src="assets/img_low/sp/event/treasureraid068/assets/other/<%= v.thumbnail %>.jpg">undefined</div>undefined<div class="prt-consume-point<% if(+v.consume_point > +score){ %> not-use<% } %>">undefined<span class='txt-point'><%= v.consume_point %>undefined</span> ptsundefined</div>undefined</div><% }); %>undefined</div><% } %><% }); %>undefined</div>undefined<div class="prt-popup-frame">undefined<div class="txt-not-use">No boost selected</div>undefined</div>undefined<div class="prt-point-change">undefined<div class="txt-point">Points</div>undefined<div class="txt-before-point"><%= score %> ptsundefined</div>undefined<div class="txt-after-point">undefined<span><%= score %>undefined</span> ptsundefined</div>undefined</div>undefined<div class="txt-attention">Effect lasts for a single battle</div>undefined</script>undefined<script type="text/template" id="tpl-pop-help">undefined<div class="pop-help <%= className %>">undefined<div class="prt-help-list">undefined<div class="prt-help-wrapper"><% _.each(list, function(url, key) { %>undefined<div class="lis-help"><% if(!gcCoinImgFlags[key]){ %>undefined<img class="img-help" src="assets/img_low/sp/<%= url %>"><% }else{ %>undefined<img class="img-help" src="assets/img_low/shellapp/<%= url %>"><% } %>undefined</div><% }); %>undefined</div>undefined</div><% if (helpText !== '') { %>undefined<div class="prt-help-text-box"><%= helpText %>undefined</div><% } %>undefined<div class="prt-buttons-area">undefined<a href="javascript:void(0);" class="btn-help-close<% if(exchangeShopId) { %> large<% } %>">Closeundefined</a><% if(exchangeShopId) { %>undefined<a href="javascript:void(0);" data-href="shop/exchange/list/0/<%= exchangeShopId %>/1/5/10/0" class="btn-exchange">交換ページへundefined</a><% } %>undefined</div>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-pop-riddle-batle-menu"><%= questTitle %> is in progress.
+	undefined<div class="prt-menu">undefined<div class="prt-menu-list">undefined<div class="btn-riddle-retire">Give Up</div>undefined<div class="btn-riddle-mypage"></div>undefined</div>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-pop-trialbattle-notice">undefined<ul>undefined<li>Not all trial battle foes can be defeated.</li>undefined<li>To end the battle, Tap Menu and then tap Retreat.</li>undefined<li>Items, EXP, or rupies won't drop from trial battles.</li>undefined</ul>undefined<div class="prt-check-show-caution">undefined<div class="btn-check-show-caution" set="is_show_trial_battle_caution" active="1" change_class="" display_type="">Hide</div>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-pop-confirm-restart-trial">undefined<div class="txt-lead">Restart the trial battle from the beginning?</div>undefined<div class="txt-notes">Damage logs will not be saved for restarted battles.</div>undefined</script>undefined<script type="text/template" id="tpl-pop-lack-tp">undefined<div>
+		You have 0 TP.undefined<br>
+		You can use an item to continue the battle, or you can end the expedition.
+	undefined</div>undefined<div class="txt-navi">Tap the item to use.</div>undefined<div class="lis-item btn-arcarum-item<% if(+item.number <= 0) { %> disable<% } %>" item-id="<%= item.id %>">undefined<img src="assets/img_low/sp/assets/item/arcarum/s/<%= item.image %>.jpg" class="img-temporary">undefined<div class="txt-name"><%= item.name %>undefined</div>undefined<div class="txt-having">
+			Held: 　undefined<span class="having-num"><%= item.number %>undefined</span>undefined</div>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-pop-arcarum-dead-no-tp">undefined<div>Use items to resume the battle?</div><%
+		var ITEM_ID_ARCARUM_RESURRECTION = 4;
+		var ITEM_ID_TP_RECOVER = 20;
+		var itemResurrection = arcarumItemList[ITEM_ID_ARCARUM_RESURRECTION];
+		var itemTpRecover = arcarumItemList[ITEM_ID_TP_RECOVER];
+	%>undefined<div class="txt-attention">
+		You don't have enough TP. A <%= itemTpRecover.name.toLowerCase() %> and a <%= itemResurrection.name.toLowerCase() %> will be used.
+	undefined</div><% _.each([itemTpRecover, itemResurrection], function(item){ %>undefined<div class="prt-arcarum-item<% if(+item.number <= 0) { %> disable<% } %>">undefined<div class="prt-arcarum-item-thumb">undefined<img src="assets/img_low/sp/assets/item/arcarum/s/<%= item.image %>.jpg" class="img-item-thumb">undefined</div>undefined<div class="prt-arcarum-item-info">undefined<div class="txt-name"><%= item.name %>undefined</div>undefined<div class="txt-having">
+					Held: 　undefined<span class="having-num"><%= item.number %>undefined</span>undefined</div>undefined</div>undefined</div><% }); %>undefined</script>undefined<script type="text/template" id="tpl-pop-confirm-arcarum-dead-no-tp"><%
+		var ITEM_ID_ARCARUM_RESURRECTION = 4;
+		var ITEM_ID_TP_RECOVER = 20;
+		var itemResurrection = arcarumItemList[ITEM_ID_ARCARUM_RESURRECTION];
+		var itemTpRecover = arcarumItemList[ITEM_ID_TP_RECOVER];
+	%>undefined<div>You're about to use a <%= itemTpRecover.name.toLowerCase() %> and a <%= itemResurrection.name.toLowerCase() %>.undefined</div>undefined<div class="txt-description">
+		All allies will be revived, and <%= itemTpRecover.effect_value %> TP will be restored.
+	undefined</div><% _.each([itemTpRecover, itemResurrection], function(item){ %>undefined<div class="prt-arcarum-item<% if(+item.number <= 0) { %> disable<% } %>">undefined<div class="prt-arcarum-item-thumb">undefined<img src="assets/img_low/sp/assets/item/arcarum/s/<%= item.image %>.jpg" class="img-item-thumb">undefined</div>undefined<div class="prt-arcarum-item-info">undefined<div class="txt-name"><%= item.name %>undefined</div>undefined<div class="txt-having">
+					Held: 　undefined<span class="having-num"><%= item.number %>undefined</span>&gt;&gt;undefined<span class="having-num-after"><%= (+item.number) - 1 %>undefined</span>undefined</div>undefined</div>undefined</div><% }); %>undefined</script>undefined<script type="text/template" id="tpl-pop-no-tp-must-retire">undefined<div class="txt-must-retire">
+		Your TP is at 0. This expedition will now end.
+	</div>undefined<div class='txt-must-retire-notice'>
+		Any progress from the last checkpointundefined<br>won't be saved.
+	undefined</div>undefined</script>undefined<script type="text/template" id="tpl-pop-retire-selection">undefined<div class="txt-retire-selection">
+		探索を終了しますか？
+	</div>undefined<div class='txt-retire-selection-notice'>
+		Any progress from the last checkpointundefined<br>won't be saved.
+	undefined</div>undefined</script>undefined<div class="pop-usual pop-ability-orderchange">undefined<div class="prt-popup-header">Use Skill</div>undefined<div class="prt-popup-body">undefined<div class="prt-ability-detail">undefined<div class="prt-icon">undefined<div class=""></div>undefined</div>undefined<div class="prt-text">undefined<div class="name"></div>undefined<div class="effect"></div>undefined<div class="time">undefined<div class="recast"></div>undefined<div class="duration"></div>undefined</div>undefined</div>undefined</div>undefined<div class="prt-wrapper">undefined<div class="txt-select-chara">Select a Character</div>undefined<div class="prt-group-name">Main Members</div>undefined<div class="prt-character main">undefined<div class="lis-character0 btn-command-character disable" pos="0">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined<div class="lis-character1 btn-command-character disable" pos="1">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined<div class="lis-character2 btn-command-character disable" pos="2">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined<div class="lis-character3 btn-command-character disable" pos="3">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined<div class="lis-character4 btn-command-character disable" pos="4">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined<div class="lis-character5 btn-command-character disable" pos="5">undefined<img class="img-chara-command" src="">undefined<div class="prt-status hideable"></div>undefined<div class="ico-type"></div>undefined<div class="prt-hp-info">undefined<div class="img-text-hp hideable"></div>undefined<div class="txt-hp-value hideable"></div>undefined<div class="txt-coating-value"></div>undefined<div class="prt-gauge-hp hideable">undefined<div class="prt-gauge-hp-inner"></div>undefined</div>undefined</div>undefined<div class="prt-special-info">undefined<div class="img-text-special hideable"></div>undefined<div class="prt-gauge-special character4 hideable">undefined<div class="prt-gauge-special-inner"></div>undefined<div class="prt-shine"></div>undefined<div class="prt-black-mask"></div>undefined</div>undefined<div class="prt-percent hideable"></div>undefined</div>undefined<div class="img-text-ability hideable"></div>undefined<div class="prt-ability-state hideable">undefined<div class="lis-ability-state ability1"></div>undefined<div class="lis-ability-state ability2"></div>undefined<div class="lis-ability-state ability3"></div>undefined<div class="lis-ability-state ability4"></div>undefined</div>undefined<div class="prt-mask"></div>undefined</div>undefined</div>undefined<div class="prt-group-name">Sub Members</div>undefined<div class="prt-character prt-sub-character"></div>undefined<div class="txt-info"></div>undefined</div>undefined</div>undefined<div class="prt-popup-footer">undefined<div class="btn-usual-cancel"></div>undefined<div class="btn-usual-orderchange disable">Use</div>undefined</div>undefined</div>undefined<div class="watching-mask" style="display: none;"></div>undefined<div class="active-mask" id="header-mask"></div>undefined<div class="active-mask" id="main-mask"></div>undefined<div class="active-mask" id="command-mask"></div>undefined<div class="active-mask" id="heal-btn-mask"></div>undefined<div class="active-mask" id="okugi-btn-mask"></div>undefined<div class="active-mask" id="speed-btn-mask"></div>undefined<div class="active-mask" id="multi-btn-mask"></div>undefined<script type="text/template" id="tpl-prt-notice-arcarum-battle">undefined<div class="prt-notice-arcarum-battle">undefined<span class="txt-notice-arcarum-battle"><%= text %>undefined</span>undefined<div class="prt-notice-arcarum-battle-touch-anim"></div>undefined</div>undefined</script>undefined<script type="text/template" id="tpl-img-assign">undefined<img class="<%= className %>" src="assets/img_low/sp/<%= filePath %>">undefined</script>undefined<script type="text/template" id="tpl-ready-auto">undefined<div class="txt-auto-setting">Tap the screen to enable/disable auto attack.</div><% if(renderedCount >= canChangeSettingCount){ %>undefined<div class="btn-ready-auto<% if(isAutoOn === false){ %>-off<% } %> anim-simple-fadein">undefined</div><% } %>undefined</script>
