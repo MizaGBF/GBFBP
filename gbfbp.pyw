@@ -792,7 +792,7 @@ class GBFBP():
         except:
             return None
 
-    def printex(self, exception : Exception) -> str:
+    def printex(self, exception : Exception) -> None:
         print("".join(traceback.format_exception(type(exception), exception, exception.__traceback__)))
 
 class BaseElement():
