@@ -1,6 +1,8 @@
 # Granblue Fantasy Battle Player  
-* Local Server written in Python to load a custom Battle scene to play animations.  
+* Local Server written in Python.  
 * Tested on [Python 3.11](https://www.python.org/downloads/) or higher.  
+* It lets you load a custom battle scene with Character/Summons/Background/Enemy of your choice.  
+* Consider it a glorified Animation Viewer, serving as a proof of concept.  
   
 ![Preview](https://raw.githubusercontent.com/MizaGBF/GBFBP/main/data/readme_preview.png)  
   
@@ -91,12 +93,13 @@ Reload the page if the page hangs after calling those skills, it means you set a
 * The game only supports one mainhand weapon at a time. As a result, using multiple characters of different proficiencies is quite funny, see for yourself. It's sadly unfixable.  
 * It doesn't support auxiliary weapons.  
 * It doesn't support Enemies "full diamond" animations.  
+* It doesn't support Voices or Sounds, although it's, in theory, possible to implement.  
 * Mozilla Firefox should work but, as Granblue Fantasy is intended to be played with Chromium Browser, I can't guarantee it won't cause any issue.  
 * Because of how the Class IDs work, newer classes and MC skins must be set manually in the code. An alternative would be to add in a request to the [GBFAL data.json](https://raw.githubusercontent.com/MizaGBF/GBFAL/main/json/data.json) to automatically update them but it's not my plans.  
 * This tool can break if Cygames updates the game in a way which heavily modify it.  
   
 ### Frequently Asked Questions  
-* Can you add <Insert wish list>?  
+* Can you add `Insert wish list`?  
   
 No, I'm not planning to support or update this project in any significant way.  
   
