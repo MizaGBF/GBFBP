@@ -379,7 +379,7 @@ class GBFBP():
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" # update it once in a while
     
     def __init__(self, options : dict) -> None:
-        self.version = "3.0"
+        self.version = "3.1"
         self.client = None
         self.options = options
         self.running = False
@@ -904,7 +904,8 @@ class Character(BaseElement):
             for s in ["", "_s2", "_s3"]:
                 tasks.append(self.verify(k+s, test, download))
         for k in ["phit_{}{}{}{}".format(self.id, self.uncap, self.style, self.other), "phit_{}{}{}".format(self.id, self.style, self.other)]:
-            tasks.append(self.verify(k, test, download))
+            for s in ["", "_1", "_2", "_3"]:
+                tasks.append(self.verify(k+s, test, download))
         for k in ["nsp_{}_0{}{}{}".format(self.id, self.uncap, self.style, self.other), "nsp_{}_0{}{}{}{}".format(self.id, self.uncap, self.style, self.gender, self.other)]:
             for s in ["", "_s2", "_s3"]:
                 for l in ['', '_a', '_b', '_c', '_e', '_f', '_g', '_h', '_i', '_j']:
@@ -1075,7 +1076,9 @@ class Weapon(Character):
             u = self.gender if uncap == 1 else uncap
             su = "" if uncap == 1 else "_0" + str(uncap)
             tasks = []
-            if not phit: tasks.append(self.verify("phit_{}{}".format(self.id, su), test, download))
+            if not phit:
+                for s in ["", "_1", "_2", "_3"]:
+                    tasks.append(self.verify("phit_{}{}{}".format(self.id, su, s), test, download))
             if not sp:
                 for k in ["sp_{}".format(self.id), "sp_{}_{}".format(self.id, u), "sp_{}_{}_s2".format(self.id, u), "sp_{}_s2".format(self.id)]:
                     tasks.append(self.verify(k, test, download))
@@ -1257,7 +1260,7 @@ class MC(Weapon):
 
     async def verify_process(self, test : bool = False, download : bool = False) -> bool:
         tasks = []
-        for k in ["phit_{}".format(self.id), "sp_{}".format(self.id), "sp_{}_{}".format(self.id, self.gender), "sp_{}_{}_s2".format(self.id, self.gender), "sp_{}_s2".format(self.id)]:
+        for k in ["phit_{}".format(self.id), "phit_{}_1".format(self.id), "phit_{}_2".format(self.id), "phit_{}_3".format(self.id), "sp_{}".format(self.id), "sp_{}_{}".format(self.id, self.gender), "sp_{}_{}_s2".format(self.id, self.gender), "sp_{}_s2".format(self.id)]:
             tasks.append(self.verify(k, test, download))
         await asyncio.gather(*tasks)
         if self.lookFor('sp_') is None:
@@ -1433,7 +1436,6 @@ class Interface(Tk.Tk): # interface
             self.default_input = settings.get('last_input', '')
             self.server.test = settings.get('test', False)
             self.server.download = settings.get('download', False)
-            self.server.version = settings.get('version', None)
             self.server.dummy_bg = settings.get('dummy_bg', False)
             self.server.green_bg = settings.get('green_bg', False)
             self.server.battle.bg = settings.get('background', self.server.battle.DEFAULT_BG)
