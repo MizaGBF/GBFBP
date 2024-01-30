@@ -379,7 +379,7 @@ class GBFBP():
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" # update it once in a while
     
     def __init__(self, options : dict) -> None:
-        self.version = "3.1"
+        self.version = "3.2"
         self.client = None
         self.options = options
         self.running = False
@@ -743,7 +743,8 @@ class GBFBP():
         print("Skipped", nd, "characters")
         print("Skipped", ns, "summons")
         if self.interface is not None and self.interface.apprunning:
-            messagebox.showinfo("Info", "The Battle is ready.\nPlease press OK and reload the page." + ("" if len(errors) == 0 else "\nThe following lines couldn't be processed due to errors:\n" + "\n".join(errors)) + ("" if nd == 0 else "\n" + str(nd) + " Weapon/Character(s) didn't get processed (Max 4)") + ("" if ns == 0 else "\n" + str(ns) + " Summon(s) didn't get processed (Max 5)"))
+            self.interface.bell()
+            self.interface.notifications.append("The Battle is ready.\nPlease press OK and reload the page." + ("" if len(errors) == 0 else "\nThe following lines couldn't be processed due to errors:\n" + "\n".join(errors)) + ("" if nd == 0 else "\n" + str(nd) + " Weapon/Character(s) didn't get processed (Max 4)") + ("" if ns == 0 else "\n" + str(ns) + " Summon(s) didn't get processed (Max 5)"))
         self.making_new_battle = False
         return True
 
@@ -1308,6 +1309,7 @@ class Interface(Tk.Tk): # interface
         self.loop = asyncio.get_event_loop()
         self.apprunning = True
         self.default_input = "3040036000_04\n3040335000\nMirin"
+        self.notifications = []
         # load settings and start thread
         self.load()
         
@@ -1407,6 +1409,9 @@ class Interface(Tk.Tk): # interface
     async def run(self) -> None:
         run_flag = False
         while self.apprunning:
+            if self.focus_displayof() is not None and len(self.notifications) > 0:
+                messagebox.showinfo(title="Notification", message=self.notifications[0])
+                self.notifications.pop(0)
             if not self.server.making_new_battle:
                 if run_flag:
                     self.loadbutton.configure(state=Tk.NORMAL)
@@ -1477,7 +1482,7 @@ class Interface(Tk.Tk): # interface
         if await self.server.generateHTML():
             messagebox.showinfo("Info", "A new 'index.html' has been generated, please press OK and reload the page.")
         else:
-            messagebox.showinfo("Error", "An error occured and 'index.html' couldn't be generated.\nIf GBF isn't in maintenance, contact the developer about this issue.\nPress OK to continue.")
+            messagebox.showerror("Error", "An error occured and 'index.html' couldn't be generated.\nIf GBF isn't in maintenance, contact the developer about this issue.\nPress OK to continue.")
 
     def bgmodified(self, *args) -> None:
         self.server.battle.bg = self.bg.get()
