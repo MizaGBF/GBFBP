@@ -379,7 +379,7 @@ class GBFBP():
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" # update it once in a while
     
     def __init__(self, options : dict) -> None:
-        self.version = "3.2"
+        self.version = "3.3"
         self.client = None
         self.options = options
         self.running = False
@@ -619,7 +619,7 @@ class GBFBP():
         if cpath not in self.cache:
             with open("data/" + path, mode='r', encoding='utf-8') as f:
                 self.cache[cpath] = f.read()
-        return copy.deepcopy(json.loads(self.cache[cpath].replace('enemy_4200293', 'enemy_'+(self.enemy if self.enemy != '' else self.server.DEFAULT_ENEMY))))
+        return copy.deepcopy(json.loads(self.cache[cpath].replace('enemy_4200293', 'enemy_'+(self.enemy if self.enemy != '' else self.DEFAULT_ENEMY))))
 
     async def generateHTML(self) -> bool:
         try:
