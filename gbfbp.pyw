@@ -379,7 +379,7 @@ class GBFBP():
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" # update it once in a while
     
     def __init__(self, options : dict) -> None:
-        self.version = "3.3"
+        self.version = "3.4"
         self.client = None
         self.options = options
         self.running = False
@@ -1046,7 +1046,7 @@ class Summon(BaseElement):
     def get_call(self):
         if len(self.calls) == 0: return ("", "")
         c = self.calls[self.call_count]
-        self.call_count = (self.call_count + 1) % len(self.calls[self.call_count])
+        self.call_count = (self.call_count + 1) % len(self.calls)
         return c
 
 class Weapon(Character):
