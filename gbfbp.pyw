@@ -363,8 +363,11 @@ class Battle():
         pos = int(data['summon_id']) - 1
         attack = self.server.getJSONData('ability_use.json')
         call = self.summons[pos].get_call()
-        attack['scenario'][0] = {"cmd":"summon","attr":"1","kind": call[0],"name":"","change":"off","list":[]}
-        attack['scenario'].insert(1, {"cmd":"summon","attr":"1","kind":call[1],"name":"","change":"on","list":[]})
+        if len(call) == 2:
+            attack['scenario'][0] = {"cmd":"summon","attr":"1","kind": call[0],"name":"","change":"off","list":[]}
+            attack['scenario'].insert(1, {"cmd":"summon","attr":"1","kind":call[1],"name":"","change":"on","list":[]})
+        else:
+            attack['scenario'][0] = {"cmd":"summon_simple","attr":"1","kind": call[0],"name":"","change":"on"}
 
         for i in range(min(4, len(self.characters))):
             attack['status']['ability'][str(i)] = self.genAbility(i, self.characters[i])
@@ -379,7 +382,7 @@ class GBFBP():
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" # update it once in a while
     
     def __init__(self, options : dict) -> None:
-        self.version = "3.4"
+        self.version = "3.5"
         self.client = None
         self.options = options
         self.running = False
@@ -1009,22 +1012,30 @@ class Summon(BaseElement):
                     for t in ["_attack", "_damage"]:
                         tasks.append(self.verify(k+m+t, test, download))
             await asyncio.gather(*tasks)
-        if self.lookFor('attack') is None or self.lookFor('damage') is None: return False
-        if self.lookFor('_a_attack') is not None: self.multi_call = True
-        atks = self.lookForAll('attack')
-        dmgs = self.lookForAll('damage')
-        if len(atks) >= len(dmgs):
-            for i in range(len(atks)):
-                if i >= len(dmgs):
-                    self.calls.append((atks[i], dmgs[-1]))
-                else:
-                    self.calls.append((atks[i], dmgs[i]))
+        if (self.lookFor('attack') is None and self.lookFor('damage') is not None) or (self.lookFor('attack') is not None and self.lookFor('damage') is None):
+            return False
+        elif self.lookFor('attack') is None and self.lookFor('damage') is None:
+            await self.verify("summon_{}".format(self.id), test, download)
+            f = self.lookFor('summon_')
+            if f is None:
+                return False
+            self.calls.append((f,))
         else:
-            for i in range(len(dmgs)):
-                if i >= len(atks):
-                    self.calls.append((atks[-1], dmgs[i]))
-                else:
-                    self.calls.append((atks[i], dmgs[i]))
+            atks = self.lookForAll('attack')
+            dmgs = self.lookForAll('damage')
+            if len(atks) >= len(dmgs):
+                for i in range(len(atks)):
+                    if i >= len(dmgs):
+                        self.calls.append((atks[i], dmgs[-1]))
+                    else:
+                        self.calls.append((atks[i], dmgs[i]))
+            else:
+                for i in range(len(dmgs)):
+                    if i >= len(atks):
+                        self.calls.append((atks[-1], dmgs[i]))
+                    else:
+                        self.calls.append((atks[i], dmgs[i]))
+        if self.lookFor('_a_attack') is not None: self.multi_call = True
         return True
 
     async def build(self, id : Union[str, int], uncap : int  = 1, style : str = "", gender : int = 0, test : bool = False, download : bool = False) -> bool:
