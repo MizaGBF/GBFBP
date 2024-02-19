@@ -1224,8 +1224,9 @@ class MC(Weapon):
         "370901": ["byk_me"], # baihu
         "460301": ["ymt_sw", "ymt_kt"], # yamato
         "140401": ["kig_kn", "kig_gu"], # king
-        "311101_sw": ["vs2_sw"], # versus skin
-        "311201": ["tbs_sw"] # relink skin
+        "311101": ["vs2_sw"], # versus rising skin
+        "311201": ["tbs_sw"], # relink skin
+        "400101": ["nir_kt"] # 2B skin
     }
     OUGI = {
         "320001": "1040115000", # school dancer
@@ -1250,7 +1251,8 @@ class MC(Weapon):
         "310301": "1040014200", # attack on titan
         "360201": "1040515800", # premium friday
         "311101": "1040025000", # versus skin
-        "311201": "1040025600" # relink skin
+        "311201": "1040025600", # relink skin
+        "400101": "1040916100" # 2B skin
     }
     PLACEHOLDER = {
         "sw": "1010000000",
