@@ -1226,7 +1226,8 @@ class MC(Weapon):
         "140401": ["kig_kn", "kig_gu"], # king
         "311101": ["vs2_sw"], # versus rising skin
         "311201": ["tbs_sw"], # relink skin
-        "400101": ["nir_kt"] # 2B skin
+        "400101": ["nir_kt"], # 2B skin
+        "150401": ["omj_kn", "omj_kt"] # onmyoji
     }
     OUGI = {
         "320001": "1040115000", # school dancer
