@@ -86,7 +86,7 @@ class Battle():
                 uncap = "" if self.characters[i].uncap == 1 else "_0"+str(self.characters[i].uncap)
                 if self.characters[i].melee:
                     start['weapon'] = {'weapon_l':str(self.characters[i].id) + uncap + "_1", 'weapon_r':str(self.characters[i].id) + uncap + "_2"}
-                    start['weapon_kind'] = {'weapon_l':str((int(self.characters[i].id) // 100000) % 10 + 1), 'weapon_r':str((self.characters[i].id // 100000) % 10 + 1)}
+                    start['weapon_kind'] = {'weapon_l':str((int(self.characters[i].id) // 100000) % 10 + 1), 'weapon_r':str((int(self.characters[i].id) // 100000) % 10 + 1)}
                 else:
                     start['weapon'] = {'weapon':str(self.characters[i].id) + uncap}
                     start['weapon_kind'] = {'weapon':str((int(self.characters[i].id) // 100000) % 10 + 1)}
