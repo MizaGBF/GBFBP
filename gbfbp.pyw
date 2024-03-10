@@ -787,7 +787,7 @@ class GBFBP():
 
     async def search_id_on_wiki(self, sps : str) -> Optional[str]: # search on gbf.wiki to match a name to its id
         try:
-            data = (await self.request("https://gbf.wiki/" + parse.quote(self.fixCase(sps)))).decode('utf-8')
+            data = (await self.request("https://gbf.wiki/" + parse.quote(self.fixCase(sps)), headers={'User-Agent':self.USER_AGENT})).decode('utf-8')
             for r in self.regex:
                 group = r.findall(data)
                 if len(group) > 0:
